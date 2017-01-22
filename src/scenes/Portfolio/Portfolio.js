@@ -88,7 +88,8 @@ class Portfolio extends React.Component {
                   </div>
                   <div className={ styles.balanceTotal }>
                     <ColoredChange direction={ direction }>
-                      { formatNumber(this.store.totalChange, 'USD', { directionSymbol: true }) }
+                      { formatNumber(this.store.totalChange, 'USD', { directionSymbol: true,
+                                                                      minPrecision: true }) }
                     </ColoredChange>
                   </div>
                 </div>

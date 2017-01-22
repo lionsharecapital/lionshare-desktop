@@ -6,7 +6,8 @@
 Lionshare is a simple macOS application that helps you track cryptocurrencies and
 your portfolio. Build using Electron, React and Mobx.
 
-For the API and other parts of the Lionshare herd, checkout our [Github page](https://github.com/lionsharecapital).
+For the API and other parts of the Lionshare herd, checkout our [Github page](https://github.com/lionsharecapital)
+or get in touch with us on [Twitter](https://twitter.com/getlionshare).
 
 ## Development
 
