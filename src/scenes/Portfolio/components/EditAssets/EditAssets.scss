@@ -63,10 +63,21 @@
 }
 
 .overlayImage {
-  width: 80px;
-  height: 80px;
+  width: 87px;
+  height: 87px;
+  position: relative;
   margin-bottom: 20px;
-  border: 4px solid $gray;
+}
+
+.overlayImageLogo {
+  position: absolute;
+  margin: 0 auto;
+}
+
+.donutPlaceholder {
+  width: 87px;
+  height: 87px;
+  background-color: blue;
   border-radius: 50%;
 }
 
