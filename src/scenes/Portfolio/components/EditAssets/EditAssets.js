@@ -24,9 +24,20 @@ const EditAssets = ({
 }) => {
   const currencies = CURRENCIES.filter(currency => visibleCurrencies.includes(currency.symbol));
   const balanceLabel = editMode === 'fiat' ? 'Hide USD' : 'Show USD';
+  const isNew = true;
 
   return (
     <Flex auto column className={ styles.container }>
+      { isNew && (
+        <Flex align="center" justify="center" className={ styles.overlay }>
+          <Flex column align="center" className={ styles.overlayWrapper }>
+            <div className={ styles.overlayImage }></div>
+            <div className={ styles.overlayHeader }>Create your portfolio</div>
+            <div className={ styles.overlayText }>Enter the amount of each digital currency you own (or want to own), then <span className={ styles.emphasis }>save</span> to start tracking.</div>
+            <div role="button" className={ styles.overlayButton }>Got it</div>
+          </Flex>
+        </Flex>
+      )}
       <Flex align="center" justify="space-between" className={ styles.header }>
         <div>Total: { formatNumber(totalBalance, 'USD') }</div>
         <div
