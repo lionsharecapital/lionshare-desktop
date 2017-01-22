@@ -11,7 +11,8 @@ import FatButton from 'components/FatButton';
 import EditAssets from './components/EditAssets';
 import AssetList from './components/AssetList';
 import Divider from './components/Divider';
-import PriceChange from 'components/PriceChange';
+import ChangeHighlight from 'components/ChangeHighlight';
+import ColoredChange from 'components/ColoredChange';
 
 import PortfolioStore from './PortfolioStore';
 
@@ -81,12 +82,14 @@ class Portfolio extends React.Component {
               />
                 <div className={styles.balanceContainer}>
                   <div className={styles.balanceAmount}>
-                    { formatNumber(this.store.totalBalance, 'USD', { maximumFractionDigits: 0 }) }
+                    <ChangeHighlight trigger={ this.store.totalBalance }>
+                      { formatNumber(this.store.totalBalance, 'USD', { maximumFractionDigits: 0 }) }
+                    </ChangeHighlight>
                   </div>
                   <div className={ styles.balanceTotal }>
-                    <PriceChange direction={ direction } trigger={ this.store.totalChange }>
+                    <ColoredChange direction={ direction }>
                       { formatNumber(this.store.totalChange, 'USD', { directionSymbol: true }) }
-                    </PriceChange>
+                    </ColoredChange>
                   </div>
                 </div>
               </div>

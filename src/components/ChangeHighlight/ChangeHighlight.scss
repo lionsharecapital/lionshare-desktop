@@ -1,11 +1,12 @@
 @import '~styles/constants.scss';
 
-// Up
+// Number
 
-.up {
-  color: $up;
-  border-radius: 2px;
+.number {
+  border-radius: 5px;
 }
+
+// Up
 
 .upHighlight {
   animation: pulseUp 1.25s ease;
@@ -13,17 +14,12 @@
 
 @keyframes pulseUp {
   0% { opacity: 0;
-    color: white;
+    color: $up;
   background-color: $up; }
   100% { opacity: 1; }
 }
 
 // Down
-
-.down {
-  color: $down;
-  border-radius: 2px;
-}
 
 .downHighlight {
   animation: pulseDown 1.25s ease;
@@ -31,7 +27,7 @@
 
 @keyframes pulseDown {
   0% { opacity: 0;
-    color: white;
+    color: $down;
   background-color: $down; }
   100% { opacity: 1; }
 }

@@ -7,7 +7,8 @@ import { formatNumber } from 'utils/formatting';
 import { CURRENCIES } from 'utils/currencies';
 
 import CurrencyColor from 'components/CurrencyColor';
-import PriceChange from 'components/PriceChange';
+import ChangeHighlight from 'components/ChangeHighlight';
+import ColoredChange from 'components/ColoredChange';
 
 import styles from './AssetList.scss';
 
@@ -57,12 +58,14 @@ const AssetRow = ({
       </Flex>
       <div>
         <Flex justify="flex-end">
-          { formatNumber(nativeBalance, 'USD') }
+          <ChangeHighlight trigger={ nativeBalance }>
+            { formatNumber(nativeBalance, 'USD') }
+          </ChangeHighlight>
         </Flex>
         <Flex justify="flex-end">
-          <PriceChange direction={ direction } trigger={ change }>
+          <ColoredChange direction={ direction }>
             { formatNumber(change, 'USD', { directionSymbol: true }) }
-          </PriceChange>
+          </ColoredChange>
         </Flex>
       </div>
     </Flex>

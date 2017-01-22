@@ -6,7 +6,8 @@ import { Line } from 'react-chartjs';
 import { formatNumber } from 'utils/formatting';
 
 import CurrencyColor from 'components/CurrencyColor';
-import PriceChange from 'components/PriceChange';
+import ChangeHighlight from 'components/ChangeHighlight';
+import ColoredChange from 'components/ColoredChange';
 
 import styles from './PriceList.scss';
 
@@ -60,11 +61,15 @@ const AssetRow = ({
         <CurrencyColor color={ color } className={ styles.colorDot } />
         <div className={ styles.currencyCode }>{ symbol }</div>
         <Flex column className={ styles.data }>
-          <div className={ styles.price }>{ formatNumber(price, 'USD') }</div>
+          <div className={ styles.price }>
+            <ChangeHighlight trigger={ price }>
+              { formatNumber(price, 'USD') }
+            </ChangeHighlight>
+          </div>
           <div>
-            <PriceChange direction={ direction } trigger={ price }>
+            <ColoredChange direction={ direction }>
               { directionSymbol }{ change }%
-            </PriceChange>
+            </ColoredChange>
           </div>
         </Flex>
       </Flex>
