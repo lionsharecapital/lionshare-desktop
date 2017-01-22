@@ -85,7 +85,8 @@ class Portfolio extends React.Component {
                   </div>
                   <div className={ styles.balanceTotal }>
                     <PriceChange direction={ direction } trigger={ this.store.totalChange }>
-                      { formatNumber(this.store.totalChange, 'USD', { directionSymbol: true }) }
+                      { formatNumber(this.store.totalChange, 'USD', { directionSymbol: true,
+                                                                      minPrecision: true }) }
                     </PriceChange>
                   </div>
                 </div>

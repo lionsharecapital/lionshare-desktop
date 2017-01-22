@@ -61,7 +61,7 @@ const AssetRow = ({
         </Flex>
         <Flex justify="flex-end">
           <PriceChange direction={ direction } trigger={ change }>
-            { formatNumber(change, 'USD', { directionSymbol: true }) }
+            { formatNumber(change, 'USD', { directionSymbol: true, minPrecision: true }) }
           </PriceChange>
         </Flex>
       </div>
