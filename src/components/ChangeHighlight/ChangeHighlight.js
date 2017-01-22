@@ -1,23 +1,26 @@
 import React, { PropTypes } from 'react';
 
-import styles from './PriceChange.scss';
+import styles from './ChangeHighlight.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
-class PriceChange extends React.Component {
+class ChangeHighlight extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    direction: PropTypes.string.isRequired,
     trigger: PropTypes.any.isRequired,
   }
 
   state = {
     highlight: false,
+    direction: null,
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.trigger !== nextProps.trigger) {
-      this.setState({ highlight: true });
+      this.setState({
+        highlight: true,
+        direction: parseFloat(nextProps.trigger) > parseFloat(this.props.trigger) ? 'up' : 'down',
+      });
       setTimeout(() => this.setState({ highlight: false }), 2500);
     }
   }
@@ -25,15 +28,18 @@ class PriceChange extends React.Component {
   render() {
     const {
       children,
-      direction,
     } = this.props;
+    const {
+      highlight,
+      direction,
+    } = this.state;
 
     return (
       <span
-        className={ cx(styles[direction], { [`${direction}Highlight`]: this.state.highlight })}
+        className={ cx(styles.number, { [`${direction}Highlight`]: highlight })}
       >{ children }</span>
     );
   }
 }
 
-export default PriceChange;
+export default ChangeHighlight;
