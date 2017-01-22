@@ -32,7 +32,7 @@ export default class PricesStore {
       data = {};
       _.map(this.rateData, (value, key) => {
         const change = (value.slice(-1)[0] - value[0]) / value[0];
-        data[key] = _.round(change, 4);
+        data[key] = change;
       });
     }
     return data;
@@ -44,24 +44,26 @@ export default class PricesStore {
       data = [];
       _.map(this.rateData, (value, key) => {
         const color = currencyColors[key];
+        const labels = [];
         const historic = [];
         const multiple = 1000000000;
         for (const rate of value) {
           // Need to multiply by `multiple`, so that chartjs detects
           // small changes for super cheap coins
           historic.push(rate * multiple);
+          labels.push('');
         }
 
         data.push({
           color,
           symbol: key,
           price: this.rates[key],
-          change: _.round(this.changes[key] * 100, 2),
+          change: this.changes[key] * 100,
           chartData: {
-            labels: ['', '', '', '', '', '', '', '', '', '', '', ''],
+            labels,
             datasets: [{
               strokeColor: color,
-              data: historic.slice(0, 12),
+              data: historic,
             }],
           },
           highestPrice: this.highestPrice(key),

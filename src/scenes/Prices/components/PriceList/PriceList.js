@@ -36,7 +36,6 @@ const AssetRow = ({
   marketCap,
 }) => {
   const direction = change >= 0 ? 'up' : 'down';
-  const directionSymbol = direction === 'up' && '+';
   const chartOptions = {
     showTooltips: false,
     pointDot: false,
@@ -45,10 +44,6 @@ const AssetRow = ({
     scaleFontSize: 0,
     animation: false,
   };
-
-  const format = (number) => formatNumber(number, undefined, {
-    maximumFractionDigits: 7 - parseInt(number, 10).toString().length,
-  });
 
   return (
     <Flex
@@ -60,10 +55,13 @@ const AssetRow = ({
         <CurrencyColor color={ color } className={ styles.colorDot } />
         <div className={ styles.currencyCode }>{ symbol }</div>
         <Flex column className={ styles.data }>
-          <div className={ styles.price }>{ formatNumber(price, 'USD') }</div>
+          <div className={ styles.price }>
+            { formatNumber(price, 'USD', { minPrecision: true }) }
+          </div>
           <div>
             <PriceChange direction={ direction } trigger={ price }>
-              { directionSymbol }{ change }%
+              { formatNumber(change, undefined, { directionSymbol: true,
+                                                  minPrecision: true }) }%
             </PriceChange>
           </div>
         </Flex>
@@ -79,11 +77,11 @@ const AssetRow = ({
         <Flex column justify="space-between" className={ styles.highlow }>
           <Flex justify="space-between" className={ styles.high }>
             <span className={ styles.label }>H</span>
-            <span>${ format(highestPrice) }</span>
+            <span>{ formatNumber(highestPrice, 'USD', { minPrecision: true }) }</span>
           </Flex>
           <Flex justify="space-between" className={ styles.low }>
             <span className={ styles.label }>L</span>
-            <span>${ format(lowestPrice) }</span>
+            <span>{ formatNumber(lowestPrice, 'USD', { minPrecision: true }) }</span>
           </Flex>
           <Flex justify="space-between" className={ styles.cap }>
             <span className={ styles.label }>M</span>
