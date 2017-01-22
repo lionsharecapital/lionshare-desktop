@@ -1,0 +1,86 @@
+@import '~styles/constants.scss';
+
+.container {
+  overflow-y: scroll;
+}
+
+.row {
+  position: relative;
+  flex-shrink: 0;
+  padding: 15px;
+  overflow-x: hidden;
+
+  & + .row {
+    border-top: 1px solid $darkGray;
+  }
+
+  &:hover {
+    .chart {
+      opacity: 0.35;
+      transition: opacity 0.25s ease;
+    }
+    .highlow {
+      transform: translateX(0px);
+      transition: transform 0.25s ease;
+    }
+  }
+}
+
+.colorDot {
+  margin-top: 3px;
+  margin-right: 8px;
+}
+
+.currencyCode {
+  width: 38px;
+}
+
+.price {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.change {
+  color: $gray;
+}
+
+.up {
+  color: $up;
+}
+
+.down {
+  color: $down;
+}
+
+.chart {
+  transition: opacity 0.25s ease;
+}
+
+.highlow {
+  position: absolute;
+  right: 0px;
+  padding-right: 15px;
+  padding-left: 15px;
+  font-size: 10px;
+  text-align: right;
+  transform: translateX(90px);
+  transition: transform 0.25s ease;
+}
+
+.high {
+  margin-top: 2px;
+}
+
+.low {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.cap {
+  margin-bottom: 4px;
+}
+
+.label {
+  color: $gray;
+  margin-right: 6px;
+}

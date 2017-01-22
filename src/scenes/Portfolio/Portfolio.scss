@@ -1,0 +1,52 @@
+@import '~styles/constants.scss';
+
+.summary {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.balance {
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.balanceContainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.balanceAmount {
+  font-size: 32px;
+}
+
+.balanceTotal {
+  text-transform: uppercase;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid $darkGray;
+  background-color: $black;
+
+  button {
+    flex: 1;
+    padding: 20px;
+    font-family: 'San Francisco Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  button + button {
+    border-left: 1px solid $darkGray;
+  }
+}

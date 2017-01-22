@@ -1,0 +1,24 @@
+@import '~styles/constants.scss';
+
+.number {
+  width: 130px;
+  padding: 5px 0;
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  text-align: right;
+  cursor: text;
+  font-family: 'San Francisco Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+
+  &:focus {
+    &::-webkit-input-placeholder {
+      color: $gray;
+    }
+  }
+}
+
+.number::-webkit-input-placeholder {
+  color: $darkGray;
+}

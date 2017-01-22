@@ -1,0 +1,54 @@
+@import "../../styles/constants.scss";
+
+.header {
+  position: relative;
+  padding: 0px;
+  flex-shrink: 0;
+  -webkit-app-region: drag;
+}
+
+.border {
+  border-bottom: 1px solid $darkGray;
+}
+
+.headerTab {
+  padding: 10px 20px;
+  color: $white;
+  text-decoration: none;
+  opacity: 0.35;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.activeTab {
+  opacity: 1;
+  color: $white;
+  position: relative;
+
+  &:after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: $white;
+    position: absolute;
+      left: 0;
+      bottom: -1px;
+  }
+}
+
+.settingsIcon {
+  position: absolute;
+  right: 10px;
+  stroke: $darkGray;
+
+  &:hover {
+    stroke: $white;
+  }
+
+  &.active {
+    stroke: $white;
+  }
+}

@@ -1,0 +1,21 @@
+@import "~styles/constants.scss";
+
+.footer {
+  position: relative;
+  height: 40px;
+  padding: 0px 10px;
+  flex-shrink: 0;
+  background-color: #000000;
+
+  border-top: 1px solid rgba(255,255,255,0.35);
+  color: $gray;
+}
+
+.donateLink {
+  color: $gray;
+  text-decoration: none;
+
+  &:hover {
+    color: $white;
+  }
+}

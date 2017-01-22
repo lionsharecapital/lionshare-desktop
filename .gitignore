@@ -1,0 +1,9 @@
+**/.env
+**/npm-debug.log
+*.swp
+*.swo
+*.*sublime*
+**/node_modules/*
+Lionshare-*
+dist
+desktop/dist

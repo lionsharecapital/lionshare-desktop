@@ -1,0 +1,63 @@
+@import '~styles/constants.scss';
+
+.container {
+  padding: 0 20px 20px 20px;
+  overflow: scroll;
+}
+
+.section {
+  padding-top: 5px;
+}
+
+.heading {
+  padding: 10px 0;
+}
+
+.headingActions {
+  color: $darkGray;
+}
+
+.headingAction {
+  &:hover {
+    color: $lightGray;
+  }
+}
+
+.setting {
+  padding: 10px;
+  border: 1px solid $darkGray;
+  color: $darkGray;
+}
+
+.footnote {
+  padding-top: 10px;
+  font-size: 11px;
+  color: $darkGray;
+}
+
+.link {
+  text-decoration: underline;
+
+  &:hover {
+    color: $lightGray;
+  }
+}
+
+.assetList {
+  padding-top: 15px;
+  border-top: 1px solid $darkGray;
+}
+
+.colorDot {
+  margin: 3px 8px 0 0;
+}
+
+.asset {
+  & + .asset {
+    padding-top: 15px;
+  }
+}
+
+.symbol {
+  color: $darkGray;
+}

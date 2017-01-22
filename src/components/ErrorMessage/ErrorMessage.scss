@@ -1,0 +1,24 @@
+@import "../../styles/constants.scss";
+
+.message {
+  margin: 0 30px 30px;
+  opacity: 0.7;
+  text-align: center;
+}
+
+.iconContainer {
+  margin-bottom: 20px;
+}
+
+.button {
+  margin-bottom: 20px;
+  padding: 10px 30px;
+  color: $gray;
+  border: 1px solid $gray;
+  border-radius: 2px;
+
+  &:hover {
+    border: 1px solid $white;
+    color: $white;
+  }
+}

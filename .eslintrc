@@ -1,0 +1,18 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "arrow-body-style":[0, "as-needed"], // fix `this` shortcut on ES6 classes
+    "react/no-multi-comp": 0, // allow multiple React component per file
+    "no-unused-vars": [2, { "argsIgnorePattern": "^_" }], // Allow prefixed args (`mapStateToProps(_props)`),
+    "no-param-reassign": 0, // koa@2
+    "new-cap": 0, // Server errors
+  },
+  "globals": {
+    /* Environments */
+    "__DEV__"    : false,
+    "__TEST__"   : false,
+    "API_URL"    : false,
+    "WS_URL"     : false,
+  }
+}

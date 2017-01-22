@@ -1,0 +1,44 @@
+@import '~styles/constants.scss';
+
+.header {
+  padding: 10px 15px;
+  border-bottom: 1px solid $darkGray;
+}
+
+.toggle {
+  color: $darkGray;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.underline {
+  padding: 2px 0px;
+  border-bottom: 1px solid $darkGray;
+}
+
+.active {
+  border-bottom: 1px solid $white;
+}
+
+.currencies {
+  overflow: scroll;
+  padding: 0px 15px;
+  padding-top: 10px;
+}
+
+.row {
+  flex-shrink: 0;
+  margin-bottom: 15px;
+  cursor: text;
+}
+
+.colorDot {
+  margin-right: 12px;
+  cursor: default;
+}
+
+.symbol {
+  margin-left: 8px;
+}
