@@ -3,7 +3,6 @@ import { Flex } from 'reflexbox';
 import { observer } from 'mobx-react';
 import { formatNumber } from 'utils/formatting';
 import _ from 'lodash';
-import { Doughnut } from 'react-chartjs';
 
 import { CURRENCIES } from 'utils/currencies';
 
@@ -22,14 +21,15 @@ const EditAssets = ({
   editMode,
   toggleEditMode,
   fiatCurrency,
+  toggleOnboarding,
+  showOnboarding,
 }) => {
   const currencies = CURRENCIES.filter(currency => visibleCurrencies.includes(currency.symbol));
   const balanceLabel = editMode === 'fiat' ? 'Hide USD' : 'Show USD';
-  const isNew = true;
 
   return (
     <Flex auto column className={ styles.container }>
-      { isNew && (
+      { showOnboarding && (
         <Flex align="center" justify="center" className={ styles.overlay }>
           <Flex column align="center" className={ styles.overlayWrapper }>
             <Flex align="center" justify="center" className={ styles.overlayImage }>
@@ -39,8 +39,17 @@ const EditAssets = ({
               <div className={ styles.donutPlaceholder }></div>
             </Flex>
             <div className={ styles.overlayHeader }>Create your portfolio</div>
-            <div className={ styles.overlayText }>Enter the amount of each digital currency you own (or want to own), then <span className={ styles.emphasis }>save</span> to start tracking.</div>
-            <div role="button" className={ styles.overlayButton }>Got it</div>
+            <div className={ styles.overlayText }>
+              Enter the amount of each digital currency you own (or want to own),
+              then <span className={ styles.emphasis }>save</span> to start tracking.
+            </div>
+            <div
+              role="button"
+              className={ styles.overlayButton }
+              onClick={ toggleOnboarding }
+            >
+              Got it
+            </div>
           </Flex>
         </Flex>
       )}
