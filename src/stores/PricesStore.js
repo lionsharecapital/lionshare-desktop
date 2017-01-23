@@ -47,11 +47,8 @@ export default class PricesStore {
         const color = currencyColors[key];
         const labels = [];
         const historic = [];
-        const multiple = 1000000000;
         for (const rate of value) {
-          // Need to multiply by `multiple`, so that chartjs detects
-          // small changes for super cheap coins
-          historic.push(rate * multiple);
+          historic.push(parseFloat(rate));
           labels.push('');
         }
 
