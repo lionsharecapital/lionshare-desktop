@@ -8,6 +8,12 @@
 .option {
   padding: 10px;
   border-right: 1px solid $darkGray;
+  transition: 0.15s ease;
+
+  &:hover {
+    color: $white;
+    transition: 0.15s ease;
+  }
 
   &:last-child {
     border-right: none;
