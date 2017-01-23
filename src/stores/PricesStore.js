@@ -10,6 +10,7 @@ const PRICES_STORE_KEY = 'PRICES_STORE_KEY';
 export default class PricesStore {
   @observable rateData = {};
   @observable marketData = {};
+  @observable period = 'day';
   @observable isLoaded = false;
   @observable error = null;
 
@@ -80,7 +81,7 @@ export default class PricesStore {
 
   @action fetchData = async () => {
     try {
-      const rateRes = await fetch(`${API_URL}/api/prices`);
+      const rateRes = await fetch(`${API_URL}/api/prices?period=${ this.period }`);
       const rateData = await rateRes.json();
       this.rateData = rateData.data;
 
@@ -116,10 +117,16 @@ export default class PricesStore {
     this.websocket.addEventListener('message', this.updatePrice);
   }
 
+  @action selectPeriod = (period) => {
+    this.period = period;
+    this.fetchData();
+  }
+
   @action fromJSON = (jsonData) => {
     const parsed = JSON.parse(jsonData);
     this.rateData = parsed.rateData;
     this.marketData = parsed.marketData;
+    if (parsed.period) this.period = parsed.period;
     this.isLoaded = true;
   }
 
@@ -129,6 +136,7 @@ export default class PricesStore {
     JSON.stringify({
       rateData: this.rateData,
       marketData: this.marketData,
+      period: this.period,
     })
   )
 

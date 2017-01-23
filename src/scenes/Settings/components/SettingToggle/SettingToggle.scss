@@ -1,0 +1,20 @@
+@import '~styles/constants.scss';
+
+.container {
+  border: 1px solid $darkGray;
+  color: $darkGray;
+}
+
+.option {
+  padding: 10px;
+  border-right: 1px solid $darkGray;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &.selected {
+    color: $white;
+    background-color: $highlight;
+  }
+}
