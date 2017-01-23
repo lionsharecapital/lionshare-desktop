@@ -13,7 +13,6 @@ const SettingToggle = ({ children }) => (
 
 const ToggleOption = ({ onClick, selected, children }) => (
   <Flex
-    auto
     align="center"
     justify="center"
     role="button"
