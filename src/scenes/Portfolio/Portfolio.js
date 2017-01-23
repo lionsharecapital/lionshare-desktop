@@ -79,7 +79,6 @@ class Portfolio extends React.Component {
                 height={ 185 }
                 data={ this.store.doughnutData }
                 options={ this.chartOptions }
-                borderWidth={ 0 }
               />
                 <div className={styles.balanceContainer}>
                   <div className={styles.balanceAmount}>
