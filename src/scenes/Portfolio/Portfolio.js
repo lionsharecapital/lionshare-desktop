@@ -107,6 +107,8 @@ class Portfolio extends React.Component {
                     editMode={ this.store.editMode }
                     toggleEditMode={ this.store.toggleEditMode }
                     fiatCurrency={ this.store.fiatCurrency }
+                    toggleOnboarding={ this.store.toggleOnboarding }
+                    showOnboarding={ this.store.showOnboarding }
                   />
                   { this.footer }
                 </Flex>

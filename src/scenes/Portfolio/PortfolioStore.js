@@ -12,6 +12,7 @@ class PortfolioStore {
   @observable editedBalances = asMap({}); // Temporary when user enters edit mode
 
   @observable isEditing = false;
+  @observable hideOnboarding = false;
 
   /* computed */
 
@@ -96,6 +97,10 @@ class PortfolioStore {
     return 'USD';
   }
 
+  @computed get showOnboarding() {
+    return this.totalBalance <= 0.0 && !this.hideOnboarding;
+  }
+
   /* actions */
 
   @action toggleEdit = () => {
@@ -143,6 +148,10 @@ class PortfolioStore {
     this.toggleEdit();
   }
 
+  @action toggleOnboarding = () => {
+    this.hideOnboarding = true;
+  }
+
   @action fromJSON = (jsonData) => {
     const parsed = JSON.parse(jsonData);
     if (parsed.balances) {
@@ -154,6 +163,9 @@ class PortfolioStore {
         }
       });
       this.balances.merge(balances);
+
+      // Don't show balance again if the user has already set values
+      if (this.totalBalance > 0) this.hideOnboarding = true;
     }
   }
 
