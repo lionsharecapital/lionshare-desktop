@@ -7,7 +7,7 @@
     "clean": "./node_modules/.bin/rimraf desktop/dist dist/*",
     "build:webpack": "cross-env NODE_ENV=production BUILD_DEV=false webpack --config desktop/webpack/webpack.config.prod.js --progress --colors --display-error-details",
     "build:electron": "cross-env NODE_ENV=production electron-packager . --platform=darwin --arch=x64 --overwrite --prune --ignore=\"^/?(dist|server)\" --icon src/assets/icons/appicon.icns --app-bundle-id='com.jorilallo.lionshare' --osx-sign",
-    "build:zip": "zip -r -y dist/Lionshare.zip Lionshare-darwin-x64/Lionshare.app",
+    "build:zip": "zip -r -y dist/Lionshare-macOS.zip Lionshare-darwin-x64/Lionshare.app",
     "build": "npm run clean && npm run build:webpack && npm run build:electron && npm run build:zip",
     "start": "ENV=development electron desktop",
     "dev": "concurrently -k 'node desktop/server.dev.js' 'npm start'",
