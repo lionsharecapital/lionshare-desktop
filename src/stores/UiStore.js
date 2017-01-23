@@ -10,7 +10,7 @@ const AVAILABLE_VIEWS = [
 
 export default class Ui {
   @observable view = AVAILABLE_VIEWS[0];
-  @observable visibleCurrencies = CURRENCIES.slice(0, 6).map(currency => currency.symbol);
+  @observable visibleCurrencies = CURRENCIES.map(currency => currency.symbol);
 
   /* actions */
 
