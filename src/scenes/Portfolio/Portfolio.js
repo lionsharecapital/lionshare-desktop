@@ -48,11 +48,13 @@ class Portfolio extends React.Component {
   get footer() {
     return (
       <Footer>
-        <FatButton
-          label="Cancel"
-          onClick={ this.store.toggleEdit }
-          active={ this.store.allowSave }
-        />
+        { this.store.showEditCancel && (
+          <FatButton
+            label="Cancel"
+            onClick={ this.store.toggleEdit }
+            active
+          />
+        ) }
         <FatButton
           label="Save"
           onClick={ this.store.saveEdit }

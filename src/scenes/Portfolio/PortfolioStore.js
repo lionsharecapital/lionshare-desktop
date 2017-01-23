@@ -98,6 +98,10 @@ class PortfolioStore {
     return 'USD';
   }
 
+  @computed get showEditCancel() {
+    return this.userDataReady;
+  }
+
   @computed get showOnboarding() {
     return this.totalBalance <= 0.0 && !this.hideOnboarding;
   }
