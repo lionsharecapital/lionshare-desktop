@@ -59,7 +59,7 @@ const AssetRow = ({
       <div>
         <Flex justify="flex-end">
           <ChangeHighlight trigger={ nativeBalance }>
-            { formatNumber(nativeBalance, 'USD') }
+            { formatNumber(nativeBalance, 'USD', { minPrecision: true }) }
           </ChangeHighlight>
         </Flex>
         <Flex justify="flex-end">
