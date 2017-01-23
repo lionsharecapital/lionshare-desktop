@@ -21,7 +21,7 @@ const formatNumber = (amount, currency, options = {}) => {
     // Set min precision
     value = value.replace(/\d+(?:\,\d+)*(?:\.\d+)?/, (match) => {
       const matchValue = parseFloat(match.replace(',', ''));
-      if (matchValue >= 0.1) {
+      if (matchValue >= 0.1 || options.directionSymbol) {
         match = numeral(matchValue).format('0,0[.]00');
       }
       return match;
