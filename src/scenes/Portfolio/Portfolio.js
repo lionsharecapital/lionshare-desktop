@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { observer, inject } from 'mobx-react';
-import { Doughnut } from 'react-chartjs';
+import { Doughnut } from 'react-chartjs-2';
 
 import { formatNumber } from 'utils/formatting';
 
@@ -17,8 +17,6 @@ import ColoredChange from 'components/ColoredChange';
 import PortfolioStore from './PortfolioStore';
 
 import styles from './Portfolio.scss';
-import classNames from 'classnames/bind';
-const cx = classNames.bind(styles);
 
 @inject('prices', 'ui')
 @observer
@@ -39,10 +37,12 @@ class Portfolio extends React.Component {
 
   get chartOptions() {
     return {
-      segmentShowStroke: false,
-      percentageInnerCutout: 95,
-      showTooltips: false,
+      cutoutPercentage: 95,
+      tooltips: {
+        enabled: false,
+      },
       animation: false,
+      borderWidth: 0,
     };
   }
 
@@ -76,9 +76,10 @@ class Portfolio extends React.Component {
             { !this.store.isEditing &&
               <div className={ styles.balance }>
               <Doughnut
-                height="200"
+                height={ 185 }
                 data={ this.store.doughnutData }
                 options={ this.chartOptions }
+                borderWidth={ 0 }
               />
                 <div className={styles.balanceContainer}>
                   <div className={styles.balanceAmount}>

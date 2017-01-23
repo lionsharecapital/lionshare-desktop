@@ -76,18 +76,19 @@ class PortfolioStore {
   }
 
   @computed get doughnutData() {
-    const data = [
-      {
-        value: 0.01,
-        color: 'rgba(255, 255, 255, 0.20)',
-      },
-    ];
+    const data = {
+      datasets: [{
+        borderWidth: 0,
+        data: [0.01],
+        backgroundColor: ['rgba(255, 255, 255, 0.20)'],
+        hoverBackgroundColor: ['rgba(255, 255, 255, 0.20)'],
+      }],
+    };
     if (this.userDataReady || this.isEditing) {
       this.activeBalances.forEach((amount, currency) => {
-        data.push({
-          value: this.prices.convert(amount, currency),
-          color: currencyData(currency).color,
-        });
+        data.datasets[0].data.push(this.prices.convert(amount, currency));
+        data.datasets[0].backgroundColor.push(currencyData(currency).color);
+        data.datasets[0].hoverBackgroundColor.push(currencyData(currency).color);
       });
     }
     return data;

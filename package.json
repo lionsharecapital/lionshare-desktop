@@ -33,7 +33,7 @@
     "universal-analytics": "^0.4.8"
   },
   "devDependencies": {
-    "chart.js": "^1.1.1",
+    "chart.js": "^2.4",
     "classnames": "^2.2.5",
     "concurrently": "^3.1.0",
     "cross-env": "^1.0.7",
@@ -55,7 +55,7 @@
     "node-static": "^0.7.7",
     "numeral": "^2.0.4",
     "react": "^0.14.8",
-    "react-chartjs": "^0.7.3",
+    "react-chartjs-2": "^2.0.0",
     "react-dom": "^0.14.7",
     "rebass": "^0.2.6",
     "reconnecting-websocket": "^3.0.3",

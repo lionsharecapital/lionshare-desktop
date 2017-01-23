@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex } from 'reflexbox';
 import { observer } from 'mobx-react';
-import { Line } from 'react-chartjs';
+import { Line } from 'react-chartjs-2';
 
 import { formatNumber } from 'utils/formatting';
 
@@ -38,12 +38,21 @@ const AssetRow = ({
 }) => {
   const direction = change >= 0 ? 'up' : 'down';
   const chartOptions = {
-    showTooltips: false,
-    pointDot: false,
-    scaleShowLabels: false,
-    datasetFill: false,
-    scaleFontSize: 0,
     animation: false,
+    legend: {
+      display: false,
+    },
+    tooltips: {
+      enabled: false,
+    },
+    scales: {
+      xAxes: [{
+        display: false,
+      }],
+      yAxes: [{
+        display: false,
+      }],
+    },
   };
 
   return (
@@ -70,13 +79,15 @@ const AssetRow = ({
         </Flex>
       </Flex>
       <Flex align="center">
-        <Line
-          width="125"
-          height="42" data={ chartData }
-          options={ chartOptions }
-          className={ styles.chart }
-          redraw
-        />
+        <div className={ styles.chart }>
+          <Line
+            width={ 125 }
+            height={ 42 }
+            data={ chartData }
+            options={ chartOptions }
+            redraw
+          />
+        </div>
         <Flex column justify="space-between" className={ styles.highlow }>
           <Flex justify="space-between" className={ styles.high }>
             <span className={ styles.label }>H</span>

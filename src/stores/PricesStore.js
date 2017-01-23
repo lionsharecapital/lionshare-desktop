@@ -63,7 +63,8 @@ export default class PricesStore {
           chartData: {
             labels,
             datasets: [{
-              strokeColor: color,
+              radius: 0,
+              borderColor: color,
               data: historic,
             }],
           },
