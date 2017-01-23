@@ -7,3 +7,4 @@
 Lionshare-*
 dist
 desktop/dist
+*.DS_STORE
