@@ -34,7 +34,7 @@ class EditAssets extends React.Component {
   componentDidMount() {
     this.chartUpdate = setInterval(() => {
       this.setState({ chartData: this.chartState });
-    }, 5000);
+    }, 1000);
   }
 
   componenWillUnmount() {
@@ -51,11 +51,12 @@ class EditAssets extends React.Component {
       borderWidth: 0,
       datasets: [{
         borderWidth: 0,
-        data: [getRandomInt(50, 200), getRandomInt(100, 150), getRandomInt(150, 250)],
+        data: [getRandomInt(50, 200), getRandomInt(100, 150), getRandomInt(150, 250), getRandomInt(150, 250)],
         backgroundColor: [
           this.currencies[0].color,
           this.currencies[1].color,
           this.currencies[3].color,
+          this.currencies[5].color,
         ],
       }],
     };
@@ -97,8 +98,8 @@ class EditAssets extends React.Component {
             <Flex column align="center" className={ styles.overlayWrapper }>
               <Flex align="center" justify="center" className={ styles.overlayImage }>
                 <Pie
-                  height={ 80 }
-                  width={ 80 }
+                  height={ 87 }
+                  width={ 87 }
                   data={ this.state.chartData }
                   options={ chartOptions }
                 />
@@ -108,7 +109,7 @@ class EditAssets extends React.Component {
               </Flex>
               <div className={ styles.overlayHeader }>Create your portfolio</div>
               <div className={ styles.overlayText }>
-                Enter the amount of each digital currency you own (or want to own),
+                Enter the amount of each digital currency you own (or want to),
                 then <span className={ styles.emphasis }>save</span> to start tracking.
               </div>
               <div

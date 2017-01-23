@@ -63,15 +63,16 @@
 }
 
 .overlayImage {
-  width: 87px;
-  height: 87px;
+  width: 98px;
+  height: 98px;
   position: relative;
   margin-bottom: 20px;
 }
 
 .overlayImageLogo {
   position: absolute;
-  margin: 0 auto;
+  margin: auto;
+  margin-top: 5px;
 }
 
 .overlayHeader {
