@@ -7,18 +7,28 @@
 .row {
   position: relative;
   flex-shrink: 0;
-  padding: 15px;
   overflow-x: hidden;
 
   & + .row {
     border-top: 1px solid $darkGray;
   }
+}
+
+.rowLeft {
+  padding: 15px;
+  padding-right: 0px;
+}
+
+.rowRight {
+  padding: 15px;
+  padding-left: 0px;
 
   &:hover {
     .chart {
       opacity: 0.35;
       transition: opacity 0.25s ease;
     }
+
     .highlow {
       transform: translateX(0px);
       transition: transform 0.25s ease;
@@ -33,6 +43,10 @@
 
 .currencyCode {
   width: 38px;
+}
+
+.tight {
+  letter-spacing: -1px;
 }
 
 .price {

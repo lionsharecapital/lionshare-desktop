@@ -9,6 +9,8 @@ import CurrencyColor from 'components/CurrencyColor';
 import ChangeHighlight from 'components/ChangeHighlight';
 import ColoredChange from 'components/ColoredChange';
 
+import classNames from 'classnames/bind';
+const cx = classNames.bind(styles);
 import styles from './PriceList.scss';
 
 const PriceList = ({ assets, visibleCurrencies }) => {
@@ -61,9 +63,13 @@ const AssetRow = ({
       justify="space-between"
       className={ styles.row }
     >
-      <Flex>
+      <Flex className={ styles.rowLeft }>
         <CurrencyColor color={ color } className={ styles.colorDot } />
-        <div className={ styles.currencyCode }>{ symbol }</div>
+        <div
+          className={ cx(styles.currencyCode, { tight: symbol.length >= 5 }) }
+        >
+          { symbol }
+        </div>
         <Flex column className={ styles.data }>
           <div className={ styles.price }>
             <ChangeHighlight trigger={ price }>
@@ -78,7 +84,7 @@ const AssetRow = ({
           </div>
         </Flex>
       </Flex>
-      <Flex align="center">
+      <Flex className={ styles.rowRight } align="center">
         <div className={ styles.chart }>
           <Line
             width={ 125 }
