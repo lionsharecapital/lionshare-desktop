@@ -37,7 +37,7 @@ class EditAssets extends React.Component {
     }, 1000);
   }
 
-  componenWillUnmount() {
+  componentWillUnmount() {
     clearInterval(this.chartUpdate);
   }
 
