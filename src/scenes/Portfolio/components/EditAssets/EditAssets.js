@@ -51,7 +51,7 @@ class EditAssets extends React.Component {
       borderWidth: 0,
       datasets: [{
         borderWidth: 0,
-        data: [getRandomInt(50, 200), getRandomInt(100, 150), getRandomInt(150, 250), getRandomInt(150, 250)],
+        data: [getRandomInt(50, 200), getRandomInt(100, 150), getRandomInt(100, 250), getRandomInt(50, 200)],
         backgroundColor: [
           this.currencies[0].color,
           this.currencies[1].color,
