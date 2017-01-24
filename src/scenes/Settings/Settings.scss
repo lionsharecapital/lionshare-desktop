@@ -19,11 +19,12 @@
 
 .headingAction {
   &:hover {
-    color: $lightGray;
+    color: $white;
   }
 }
 
 .setting {
+  position: relative;
   padding: 10px;
   border: 1px solid $darkGray;
   color: $darkGray;
@@ -36,10 +37,13 @@
 }
 
 .link {
-  text-decoration: underline;
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  font-size: 11px;
 
   &:hover {
-    color: $lightGray;
+    color: $white;
   }
 }
 
