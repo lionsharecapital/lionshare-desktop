@@ -1,12 +1,14 @@
 @import '~styles/constants.scss';
 
 .container {
-  padding: 0 20px 20px 20px;
+  padding: 0 15px 15px 15px;
   overflow: scroll;
 }
 
 .section {
-  padding-top: 5px;
+  & + .section {
+    padding-top: 5px;
+  }
 }
 
 .heading {
