@@ -29,8 +29,8 @@ Lionshare is an open source project created by [Ben Jennings](https://twitter.co
 
 Lionshare is an open source side project. To support development and keep servers running, you can donate using Bitcoin and Ethereum:
 
-Bitcoin: `14cYsomReqcsznbKTuW6Mh91uZm2j2AF5B`
-Ethereum: `0xbBC664b891D6Fc7EBF516594D690e370C5C32A9f`
+- Bitcoin: `14cYsomReqcsznbKTuW6Mh91uZm2j2AF5B`
+- Ethereum: `0xbBC664b891D6Fc7EBF516594D690e370C5C32A9f`
 
 ## FAQ
 
