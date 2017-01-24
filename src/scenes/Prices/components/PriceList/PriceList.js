@@ -10,8 +10,8 @@ import ChangeHighlight from 'components/ChangeHighlight';
 import ColoredChange from 'components/ColoredChange';
 
 import classNames from 'classnames/bind';
-const cx = classNames.bind(styles);
 import styles from './PriceList.scss';
+const cx = classNames.bind(styles);
 
 const PriceList = ({ assets, visibleCurrencies }) => {
   const includedAssets = assets.filter(asset => visibleCurrencies.includes(asset.symbol));

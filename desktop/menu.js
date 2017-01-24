@@ -1,4 +1,5 @@
 import { Menu, shell } from 'electron';
+import config from './config';
 
 const createMenu = (app, mainWindow) => {
   const template = [
@@ -106,6 +107,19 @@ const createMenu = (app, mainWindow) => {
       },
       {
         role: 'reload',
+      },
+      {
+        type: 'separator',
+      },
+      {
+        label: 'Show Profit/Loss in Taskbar',
+        type: 'checkbox',
+        checked: config.get('priceSetting'),
+        click() {
+          const setting = !config.get('priceSetting');
+          config.set('priceSetting', setting);
+          mainWindow.webContents.send('priceSetting', setting);
+        },
       },
       {
         type: 'separator',

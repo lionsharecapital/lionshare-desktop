@@ -1,7 +1,6 @@
 import numeral from 'numeral';
 
 const formatNumber = (amount, currency, options = {}) => {
-
   if (!(options.maximumFractionDigits || options.maximumFractionDigits === 0)) {
     options.maximumFractionDigits = 7 - parseInt(amount, 10).toString().length;
   }

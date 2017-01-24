@@ -30,6 +30,7 @@ const create = win => {
   });
   tray.on('right-click', () => tray.popUpContextMenu(contextMenu));
   tray.on('double-click', () => toggleWin());
+  return tray;
 };
 
 export {
