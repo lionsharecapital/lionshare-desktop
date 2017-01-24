@@ -22,7 +22,7 @@ const formatNumber = (amount, currency, options = {}) => {
     value = value.replace(/\d+(?:\,\d+)*(?:\.\d+)?/, (match) => {
       const matchValue = parseFloat(match.replace(',', ''));
       if (matchValue >= 0.1 || options.directionSymbol) {
-        match = numeral(matchValue).format('0,0[.]00');
+        match = numeral(matchValue).format('0,0.00');
       }
       return match;
     });
