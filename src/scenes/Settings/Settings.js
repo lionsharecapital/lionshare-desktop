@@ -21,7 +21,7 @@ class Settings extends React.Component {
 
   render() {
     const { ui } = this.props;
-    const openGitHubLink = () => shell.openExternal('https://github.com/lionsharecapital/lionshare-desktop#faq');
+    const openGitHubFaq = () => shell.openExternal('https://github.com/lionsharecapital/lionshare-desktop#faq');
     const { selectPeriod, period } = this.props.prices;
     const periodDay = () => selectPeriod('day');
     const periodWeek = () => selectPeriod('week');
@@ -63,7 +63,7 @@ class Settings extends React.Component {
             <Heading>Exchange</Heading>
             <Setting>
               GDAX/Poloniex
-              <Link onClick={ openGitHubLink }>Why?</Link>
+              <Link onClick={ openGitHubFaq }>Why?</Link>
             </Setting>
           </Section>
           <Section>

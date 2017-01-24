@@ -20,7 +20,8 @@ const Layout = ({
   const onClickPrices = () => ui.changeView('prices');
   const onClickPortfolio = () => ui.changeView('portfolio');
   const onClickSettings = () => ui.changeView('settings');
-  const openDonateLink = () => shell.openExternal('https://lionshare.capital#donate');
+  const openDonateLink = () => shell.openExternal('https://github.com/lionsharecapital/lionshare-desktop#donate');
+  const openVersionLink = () => shell.openExternal('https://github.com/lionsharecapital/lionshare-desktop/releases');
 
   return (
     <Flex auto column>
@@ -57,7 +58,12 @@ const Layout = ({
           justify="space-between"
           className={ styles.footer }
         >
-          <span>v{ version }</span>
+          <span
+            onClick={ openVersionLink }
+            role="button"
+          >
+            v{ version }
+          </span>
           <span
             onClick={ openDonateLink }
             className={ styles.donateLink }
