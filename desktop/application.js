@@ -1,4 +1,5 @@
 import electron from 'electron';
+import { ipcMain } from 'electron';
 import path from 'path';
 import url from 'url';
 import isDev from 'electron-is-dev';
@@ -84,7 +85,7 @@ app.on('ready', () => {
   mainWindow = createMainWindow();
   if (isDev) mainWindow.webContents.openDevTools({ mode: 'detach' });
   if (!isDev) scheduleUpdates();
-  createTray(mainWindow);
+  const tray = createTray(mainWindow);
   createMenu(app, mainWindow);
 
   const page = mainWindow.webContents;
@@ -96,7 +97,16 @@ app.on('ready', () => {
   app.on('activate', () => {
     mainWindow.show();
   });
+
+  ipcMain.on('priceUpdate', (_event, change) => {
+    if (config.get('priceSetting')) {
+      tray.setTitle(change);
+    } else {
+      tray.setTitle('');
+    }
+  });
 });
+
 
 app.on('before-quit', () => {
   isQuitting = true;

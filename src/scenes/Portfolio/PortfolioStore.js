@@ -1,7 +1,9 @@
 import { observable, computed, action, asMap, autorun } from 'mobx';
 import _ from 'lodash';
+import { ipcRenderer } from 'electron';
 
 import { currencyData } from 'utils/currencies';
+import { formatNumber } from 'utils/formatting';
 
 const PORTFOLIO_KEY = 'PORTFOLIO_KEY';
 
@@ -199,9 +201,26 @@ class PortfolioStore {
       this.isEditing = true;
     }
 
-    // Persist store to localStorage
+    ipcRenderer.on('priceSetting', (_event, setting) => {
+      if (setting) {
+        ipcRenderer.send('priceUpdate', formatNumber(this.totalChange, 'USD', {
+          directionSymbol: true,
+          minPrecision: true,
+        }));
+      } else {
+        ipcRenderer.send('priceUpdate', '');
+      }
+    });
+
     autorun(() => {
+      // Persist store to localStorage
       localStorage.setItem(PORTFOLIO_KEY, this.toJSON());
+      // Taskbar change updates
+      const trayChange = formatNumber(this.totalChange, 'USD', {
+        directionSymbol: true,
+        minPrecision: true,
+      });
+      ipcRenderer.send('priceUpdate', trayChange);
     });
   }
 }
