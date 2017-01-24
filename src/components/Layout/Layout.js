@@ -60,13 +60,14 @@ const Layout = ({
         >
           <span
             onClick={ openVersionLink }
+            className={ styles.footerLink }
             role="button"
           >
             v{ version }
           </span>
           <span
             onClick={ openDonateLink }
-            className={ styles.donateLink }
+            className={ styles.footerLink }
             role="button"
             title="🙏"
           >Donate</span>
