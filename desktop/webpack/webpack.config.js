@@ -2,8 +2,8 @@ var path = require('path');
 var webpack = require('webpack');
 require('dotenv').config({ silent: true });
 
-var API_URL = 'http://api.lionshare.capital';
-var WS_URL = 'ws://api.lionshare.capital';
+var API_URL = 'https://api.lionshare.capital';
+var WS_URL = 'wss://api.lionshare.capital';
 
 if (process.env.DEV_SERVER === 'true') {
   API_URL = 'http://localhost:3005';
