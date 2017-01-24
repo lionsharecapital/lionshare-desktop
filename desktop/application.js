@@ -92,10 +92,10 @@ app.on('ready', () => {
   page.on('dom-ready', () => {
     mainWindow.show();
   });
-});
 
-app.on('activate', () => {
-  mainWindow.show();
+  app.on('activate', () => {
+    mainWindow.show();
+  });
 });
 
 app.on('before-quit', () => {

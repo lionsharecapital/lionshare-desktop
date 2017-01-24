@@ -53,10 +53,10 @@ class EditAssets extends React.Component {
         borderWidth: 0,
         data: [getRandomInt(50, 200), getRandomInt(100, 150), getRandomInt(100, 250), getRandomInt(50, 200)],
         backgroundColor: [
-          this.currencies[0].color,
-          this.currencies[1].color,
-          this.currencies[3].color,
-          this.currencies[5].color,
+          CURRENCIES[0].color,
+          CURRENCIES[1].color,
+          CURRENCIES[3].color,
+          CURRENCIES[5].color,
         ],
       }],
     };
