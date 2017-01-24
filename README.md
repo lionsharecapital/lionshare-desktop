@@ -28,7 +28,7 @@ Lionshare is an open source project created by [Ben Jennings](https://twitter.co
 
 ## Donate
 
-Lionshare is an open source side project. To support development and keep servers running, you can donate using Bitcoin and Ethereum:
+Lionshare is an open source side project. To support development and keep our server running, you can donate using Bitcoin and Ethereum:
 
 - Bitcoin: `14cYsomReqcsznbKTuW6Mh91uZm2j2AF5B`
 - Ethereum: `0xbBC664b891D6Fc7EBF516594D690e370C5C32A9f`
@@ -41,7 +41,7 @@ Right now we're supporting coins with the most marget cap listed on GDAX and Pol
 
 **Does my portfolio leave my computer?**
 
-No, Lionshare is completely client-side and doesn't hold any keys. We take security very seriously and all our communication happends over HTTPS and all the code is open source.
+No, Lionshare is completely client-side and doesn't hold any keys. We take security very seriously and all our communication happens over HTTPS. All code is open source.
 
 **How will you make money?**
 
