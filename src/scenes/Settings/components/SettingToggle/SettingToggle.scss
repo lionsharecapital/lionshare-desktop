@@ -9,11 +9,9 @@
   flex: 1;
   padding: 10px 0px;
   border-right: 1px solid $darkGray;
-  transition: 0.15s ease;
 
   &:hover {
     color: $white;
-    transition: 0.15s ease;
   }
 
   &:last-child {

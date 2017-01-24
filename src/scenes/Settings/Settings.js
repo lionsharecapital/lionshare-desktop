@@ -1,6 +1,7 @@
 import React, { PropTypes }from 'react';
 import { observer, inject } from 'mobx-react';
 import { Flex } from 'reflexbox';
+import { shell } from 'electron';
 
 import { CURRENCIES } from 'utils/currencies';
 
@@ -20,10 +21,7 @@ class Settings extends React.Component {
 
   render() {
     const { ui } = this.props;
-
-    const openGdaxLink = () => shell.openExternal('https://gdax.com');
-    const openPoloniexLink = () => shell.openExternal('https://poloniex.com');
-
+    const openGitHubLink = () => shell.openExternal('https://github.com/lionsharecapital/lionshare-desktop#faq');
     const { selectPeriod, period } = this.props.prices;
     const periodDay = () => selectPeriod('day');
     const periodWeek = () => selectPeriod('week');
@@ -65,18 +63,15 @@ class Settings extends React.Component {
             <Heading>Exchange</Heading>
             <Setting>
               GDAX/Poloniex
+              <Link onClick={ openGitHubLink }>Why?</Link>
             </Setting>
-            <Footnote>
-              BTC/ETH/LTC prices provided by <Link onClick={ openGdaxLink }>GDAX</Link>,
-              <Link onClick={ openPoloniexLink }>Poloniex</Link> for the rest.
-            </Footnote>
           </Section>
           <Section>
             <Heading>
               <span>Asset List</span>
               <span className={ styles.headingActions }>
                 <HeadingAction onClick={ ui.toggleCurrenciesAll }>All</HeadingAction>
-                &nbsp;/&nbsp;
+                &nbsp;|&nbsp;
                 <HeadingAction onClick={ ui.toggleCurrenciesNone }>None</HeadingAction>
               </span>
             </Heading>
@@ -121,14 +116,8 @@ const Setting = ({ children }) => (
   </div>
 );
 
-const Footnote = ({ children }) => (
-  <div className={ styles.footnote }>
-    { children }
-  </div>
-);
-
-const Link = ({ children }) => (
-  <span className={ styles.link } role="button">
+const Link = ({ children, onClick }) => (
+  <span className={ styles.link } onClick={ onClick } role="button">
     { children }
   </span>
 );
