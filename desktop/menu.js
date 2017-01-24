@@ -15,6 +15,12 @@ const createMenu = (app, mainWindow) => {
           type: 'separator',
         },
         {
+          role: 'toggledevtools',
+        },
+        {
+          type: 'separator',
+        },
+        {
           role: 'reload',
         },
       ],
@@ -94,6 +100,9 @@ const createMenu = (app, mainWindow) => {
       },
       {
         type: 'separator',
+      },
+      {
+        role: 'toggledevtools',
       },
       {
         role: 'reload',
