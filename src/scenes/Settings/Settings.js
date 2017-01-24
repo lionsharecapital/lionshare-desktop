@@ -116,8 +116,8 @@ const Setting = ({ children }) => (
   </div>
 );
 
-const Link = ({ children }) => (
-  <span className={ styles.link } role="button">
+const Link = ({ children, onClick }) => (
+  <span className={ styles.link } onClick={ onClick } role="button">
     { children }
   </span>
 );
