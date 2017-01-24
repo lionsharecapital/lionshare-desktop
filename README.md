@@ -10,6 +10,8 @@ your portfolio. Build using Electron, React and Mobx.
 For the API and other parts of the Lionshare herd, checkout our [Github page](https://github.com/lionsharecapital)
 or get in touch with us on [Twitter](https://twitter.com/getlionshare).
 
+_Special thanks to [Coinbase](http://coinbase.com/) for sponsoring the release of Lionshare as open source software. If you’re interested in building products to reinvent the future of finance, [get in touch](https://www.coinbase.com/careers)._
+
 ## Development
 
 Electron specific code, including application configuration and Webpack build files,
