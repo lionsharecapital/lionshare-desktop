@@ -25,7 +25,7 @@ yarn run dev
 
 Lionshare is an open source project created by [Ben Jennings](https://twitter.com/benjennin_gs), [Jori Lallo](https://twitter.com/jorilallo) and [Maksim Stepanenko](https://twitter.com/maksim_s).
 
-# Donate
+## Donate
 
 Lionshare is an open source side project. To support development and keep servers running, you can donate using Bitcoin and Ethereum:
 
