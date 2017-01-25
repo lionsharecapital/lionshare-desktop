@@ -28,8 +28,6 @@
     "electron-config": "^0.2.1",
     "electron-is-dev": "^0.1.2",
     "electron-machine-id": "^1.0.9",
-    "electron-packager": "^8.4.0",
-    "safestart": "^1.1.0",
     "universal-analytics": "^0.4.8"
   },
   "devDependencies": {
@@ -42,6 +40,7 @@
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^5.0.0",
     "eslint-plugin-react": "^3.16.1",
+    "electron-packager": "^8.4.0",
     "exports-loader": "^0.6.3",
     "express": "^4.13.4",
     "file-loader": "^0.8.5",
@@ -70,7 +69,7 @@
     "svg-react-loader": "^0.3.7",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.12",
-    "webpack-target-electron-renderer": "^0.4.0",
-    "webpack-dev-middleware": "^1.6.1"
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-target-electron-renderer": "^0.4.0"
   }
 }
