@@ -16,6 +16,41 @@ const createMenu = (app, mainWindow) => {
       ],
     },
     {
+      label: 'View',
+      submenu: [
+        {
+          label: 'Prices',
+          accelerator: 'CmdOrCtrl+1',
+          click() { mainWindow.webContents.send('showPrices'); },
+        },
+        {
+          label: 'Portfolio',
+          accelerator: 'CmdOrCtrl+2',
+          click() { mainWindow.webContents.send('showPortfolio'); },
+        },
+        { type: 'separator' },
+        {
+          label: 'Toggle Profit/Loss in Taskbar',
+          type: 'checkbox',
+          checked: config.get('priceSetting'),
+          click() {
+            const setting = !config.get('priceSetting');
+            config.set('priceSetting', setting);
+            mainWindow.webContents.send('priceSetting', setting);
+          },
+        },
+        { type: 'separator' },
+        {
+          label: 'Developer',
+          submenu: [
+            {
+              role: 'toggledevtools',
+            },
+          ],
+        },
+      ],
+    },
+    {
       role: 'window',
       submenu: [
         { role: 'minimize' },
@@ -70,7 +105,7 @@ const createMenu = (app, mainWindow) => {
       ],
     });
     // Window menu.
-    template[2].submenu = [
+    template[3].submenu = [
       {
         label: 'Close',
         accelerator: 'CmdOrCtrl+W',
@@ -82,19 +117,8 @@ const createMenu = (app, mainWindow) => {
         role: 'minimize',
       },
       { type: 'separator' },
-      { role: 'toggledevtools' },
       { role: 'reload' },
-      { type: 'separator' },
-      {
-        label: 'Show Profit/Loss in Taskbar',
-        type: 'checkbox',
-        checked: config.get('priceSetting'),
-        click() {
-          const setting = !config.get('priceSetting');
-          config.set('priceSetting', setting);
-          mainWindow.webContents.send('priceSetting', setting);
-        },
-      },
+
       { type: 'separator' },
       {
         label: 'Bring All to Front',
