@@ -1,5 +1,4 @@
 import { observable, computed, action, asMap, autorun } from 'mobx';
-import _ from 'lodash';
 import { ipcRenderer } from 'electron';
 import EventEmitter from 'events';
 
@@ -12,12 +11,21 @@ class PortfolioStore {
   @observable balances = asMap({});
   @observable changes = asMap({});
   @observable editMode = 'crypto';
-  @observable editedBalances = asMap({}); // Temporary when user enters edit mode
+  @observable rawEditedBalances = asMap({}); // Temporary when user enters edit mode
 
   @observable isEditing = false;
   @observable hideOnboarding = false;
 
   /* computed */
+
+  @computed get editedBalances() {
+    const balances = {};
+    this.rawEditedBalances.forEach((amount, currency) => {
+      balances[currency] = parseFloat(amount);
+    });
+
+    return asMap(balances);
+  }
 
   @computed get isLoaded() {
     return this.prices.isLoaded;
@@ -113,10 +121,10 @@ class PortfolioStore {
 
   @action toggleEdit = () => {
     this.isEditing = !this.isEditing;
-    this.editedBalances.clear();
+    this.rawEditedBalances.clear();
     this.editMode = 'crypto';
     if (this.isEditing) {
-      this.editedBalances.merge(this.balances);
+      this.rawEditedBalances.merge(this.balances);
     }
   }
 
@@ -124,12 +132,12 @@ class PortfolioStore {
     if (this.editMode === 'crypto') {
       this.editMode = 'fiat';
       this.editedBalances.forEach((amount, currency) => {
-        this.editedBalances.set(currency, this.prices.convert(amount, currency));
+        this.rawEditedBalances.set(currency, this.prices.convert(amount, currency));
       });
     } else {
       this.editMode = 'crypto';
       this.editedBalances.forEach((amount, currency) => {
-        this.editedBalances.set(currency, amount / this.prices.convert(1.00, currency));
+        this.rawEditedBalances.set(currency, amount / this.prices.convert(1.00, currency));
       });
     }
   }
@@ -137,9 +145,9 @@ class PortfolioStore {
   @action updateBalance = (event) => {
     const { name, value } = event.target;
     if (value) {
-      this.editedBalances.set(name, _.round(parseFloat(value), 2));
+      this.rawEditedBalances.set(name, value);
     } else {
-      this.editedBalances.delete(name);
+      this.rawEditedBalances.delete(name);
     }
   }
 
@@ -148,7 +156,7 @@ class PortfolioStore {
 
     // Clean empty values
     this.editedBalances.keys().forEach(currency => {
-      if (this.editedBalances.get(currency) <= 0.0) this.editedBalances.delete(currency);
+      if (this.editedBalances.get(currency) <= 0.0) this.rawEditedBalances.delete(currency);
     });
 
     this.balances.clear();

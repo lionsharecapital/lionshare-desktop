@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import { Flex } from 'reflexbox';
 import { observer } from 'mobx-react';
 import { formatNumber } from 'utils/formatting';
-import _ from 'lodash';
 import { Pie } from 'react-chartjs-2';
 
 import { CURRENCIES } from 'utils/currencies';
@@ -195,7 +194,7 @@ class EditRow extends React.Component {
               min="0"
               onChange={ onChange }
               name={ currency.symbol }
-              value={ value && _.round(value, 2) }
+              value={ value }
               placeholder={ 0 }
               ref={ refInput }
               className={ inputStyles.number }
@@ -215,7 +214,10 @@ class EditRow extends React.Component {
 EditRow.propTypes = {
   currency: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.number,
+  value: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ]),
   editMode: PropTypes.string.isRequired,
   fiatCurrency: PropTypes.string.isRequired,
 };
