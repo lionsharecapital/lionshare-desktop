@@ -1,6 +1,7 @@
 import { observable, computed, action, asMap, autorun } from 'mobx';
 import _ from 'lodash';
 import { ipcRenderer } from 'electron';
+import EventEmitter from 'events';
 
 import { currencyData } from 'utils/currencies';
 import { formatNumber } from 'utils/formatting';
@@ -201,16 +202,18 @@ class PortfolioStore {
       this.isEditing = true;
     }
 
-    ipcRenderer.on('priceSetting', (_event, setting) => {
-      if (setting) {
-        ipcRenderer.send('priceUpdate', formatNumber(this.totalChange, 'USD', {
-          directionSymbol: true,
-          minPrecision: true,
-        }));
-      } else {
-        ipcRenderer.send('priceUpdate', '');
-      }
-    });
+    if (EventEmitter.listenerCount(ipcRenderer, 'priceSetting') === 0) {
+      ipcRenderer.on('priceSetting', (_event, setting) => {
+        if (setting) {
+          ipcRenderer.send('priceUpdate', formatNumber(this.totalChange, 'USD', {
+            directionSymbol: true,
+            minPrecision: true,
+          }));
+        } else {
+          ipcRenderer.send('priceUpdate', '');
+        }
+      });
+    }
 
     autorun(() => {
       // Persist store to localStorage
