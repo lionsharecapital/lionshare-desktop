@@ -27,7 +27,7 @@
         if (process.env.ENV === 'production') {
           const bugsnag = document.createElement('script');
           bugsnag.src = 'https://d2wy8f7a9ursnm.cloudfront.net/bugsnag-3.min.js';
-          bugsnag.setAttribute('data-apiKey', '7855326b6b9f349cd1133490c7c78ea5');
+          bugsnag.setAttribute('data-apikey', '7855326b6b9f349cd1133490c7c78ea5');
           document.write(bugsnag.outerHTML);
         }
       }());
