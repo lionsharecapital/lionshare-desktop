@@ -153,6 +153,8 @@ class PortfolioStore {
 
     this.balances.clear();
     this.balances.merge(this.editedBalances);
+    // Persist store to localStorage
+    localStorage.setItem(PORTFOLIO_KEY, this.toJSON());
     this.toggleEdit();
   }
 
@@ -216,8 +218,6 @@ class PortfolioStore {
     }
 
     autorun(() => {
-      // Persist store to localStorage
-      localStorage.setItem(PORTFOLIO_KEY, this.toJSON());
       // Taskbar change updates
       const trayChange = formatNumber(this.totalChange, 'USD', {
         directionSymbol: true,
