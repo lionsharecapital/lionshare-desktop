@@ -17,15 +17,19 @@
   </head>
   <body>
     <div id="root"></div>
-    <script
-      src="https://d2wy8f7a9ursnm.cloudfront.net/bugsnag-3.min.js"
-      data-apikey="7855326b6b9f349cd1133490c7c78ea5"></script>
     <script>
       (function() {
         const script = document.createElement('script');
         script.async = process.env.ENV === 'development';
         script.src = process.env.ENV === 'development' ? 'http://localhost:3000/static/bundle.js' : './dist/bundle.js';
         document.write(script.outerHTML);
+        
+        if (process.env.ENV === 'production') {
+          const bugsnag = document.createElement('script');
+          bugsnag.src = 'https://d2wy8f7a9ursnm.cloudfront.net/bugsnag-3.min.js';
+          bugsnag.setAttribute('data-apikey', '7855326b6b9f349cd1133490c7c78ea5');
+          document.write(bugsnag.outerHTML);
+        }
       }());
     </script>
   </body>

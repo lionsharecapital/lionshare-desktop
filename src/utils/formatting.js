@@ -2,7 +2,7 @@ import numeral from 'numeral';
 
 const formatNumber = (amount, currency, options = {}) => {
   if (!(options.maximumFractionDigits || options.maximumFractionDigits === 0)) {
-    options.maximumFractionDigits = 7 - parseInt(amount, 10).toString().length;
+    options.maximumFractionDigits = Math.max(0, 7 - parseInt(amount, 10).toString().length);
   }
 
   let value = new Intl.NumberFormat(navigator.language, {
@@ -19,7 +19,7 @@ const formatNumber = (amount, currency, options = {}) => {
   if (options.minPrecision) {
     // Set min precision
     value = value.replace(/\d+(?:\,\d+)*(?:\.\d+)?/, (match) => {
-      const matchValue = parseFloat(match.replace(',', ''));
+      const matchValue = parseFloat(match.replace(/,/g, ''));
       if (matchValue >= 0.1 || options.directionSymbol) {
         match = numeral(matchValue).format('0,0.00');
       }

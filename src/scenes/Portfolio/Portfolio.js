@@ -81,8 +81,8 @@ class Portfolio extends React.Component {
                 data={ this.store.doughnutData }
                 options={ this.chartOptions }
               />
-                <div className={styles.balanceContainer}>
-                  <div className={styles.balanceAmount}>
+                <div className={ styles.balanceContainer }>
+                  <div className={ this.store.totalBalance < 1000000 ? styles.balanceAmount : styles.balanceAmountSmall }>
                     <ChangeHighlight trigger={ this.store.totalBalance }>
                       { formatNumber(this.store.totalBalance, 'USD', { maximumFractionDigits: 0 }) }
                     </ChangeHighlight>
