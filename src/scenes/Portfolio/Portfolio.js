@@ -101,7 +101,7 @@ class Portfolio extends React.Component {
               { this.store.isEditing ? (
                 <Flex auto column>
                   <EditAssets
-                    balances={ this.store.editedBalances }
+                    balances={ this.store.rawEditedBalances }
                     totalBalance={ this.store.totalBalance }
                     onChange={ this.store.updateBalance }
                     visibleCurrencies={ this.props.ui.visibleCurrencies }
