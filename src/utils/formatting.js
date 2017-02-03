@@ -6,10 +6,13 @@ const formatNumber = (amount, currency, options = {}) => {
   }
 
   let value = new Intl.NumberFormat(navigator.language, {
-    style: currency ? 'currency' : 'decimal',
-    currency,
+    style: 'decimal',
     ...options,
   }).format(Math.abs(amount));
+
+  if (currency) {
+    value = `$${value}`;
+  }
 
   if (options.directionSymbol) {
     const direction = amount >= 0.0 ? '+' : '-';
