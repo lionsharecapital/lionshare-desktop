@@ -101,6 +101,26 @@ const CURRENCIES = [
     symbol: 'ARDR',
     color: '#1162A1',
   },
+  {
+    name: 'Decred',
+    symbol: 'DCR',
+    color: '#2ACB42',
+  },
+  {
+    name: 'Storjcoin X',
+    symbol: 'SJCX',
+    color: '#0014FF',
+  },
+  {
+    name: 'Siacoin',
+    symbol: 'SC',
+    color: '#009688',
+  },
+  {
+    name: 'I/O Coin',
+    symbol: 'IOC',
+    color: '#E91E63',
+  },
 ];
 
 const currencyData = (currencySymbol) => (
