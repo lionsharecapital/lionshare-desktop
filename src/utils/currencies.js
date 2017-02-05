@@ -104,7 +104,7 @@ const CURRENCIES = [
   {
     name: 'Decred',
     symbol: 'DCR',
-    color: '#2ACB42',
+    color: '#47ACD7',
   },
   {
     name: 'Storjcoin X',
@@ -119,7 +119,7 @@ const CURRENCIES = [
   {
     name: 'I/O Coin',
     symbol: 'IOC',
-    color: '#E91E63',
+    color: '#84D0F4',
   },
 ];
 
