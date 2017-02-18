@@ -1,5 +1,6 @@
 import { observable, action, autorun } from 'mobx';
 import { CURRENCIES } from 'utils/currencies';
+import { SORT_TYPES } from 'utils/sortBy';
 
 const UI_STORE_KEY = 'UI_STORE_KEY';
 const AVAILABLE_VIEWS = [
@@ -11,6 +12,7 @@ const AVAILABLE_VIEWS = [
 export default class Ui {
   @observable view = AVAILABLE_VIEWS[0];
   @observable visibleCurrencies = CURRENCIES.map(currency => currency.symbol);
+  @observable sortBy = SORT_TYPES.default;
 
   /* actions */
 
@@ -28,6 +30,10 @@ export default class Ui {
     }
   }
 
+  @action selectSortBy = (sortBy) => {
+    this.sortBy = sortBy;
+  };
+
   @action toggleCurrenciesAll = () => {
     this.toggleCurrenciesNone(); // Clear first
     CURRENCIES.forEach(currency => this.visibleCurrencies.push(currency.symbol));
@@ -41,6 +47,7 @@ export default class Ui {
     const parsed = JSON.parse(jsonData);
     this.view = parsed.view;
     this.visibleCurrencies.replace(parsed.visibleCurrencies);
+    this.sortBy = parsed.sortBy || this.sortBy;
   }
 
   /* other */
@@ -49,6 +56,7 @@ export default class Ui {
     JSON.stringify({
       view: this.view,
       visibleCurrencies: this.visibleCurrencies,
+      sortBy: this.sortBy,
     })
   )
 

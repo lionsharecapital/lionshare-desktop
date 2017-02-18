@@ -4,6 +4,7 @@ import { Flex } from 'reflexbox';
 import { shell } from 'electron';
 
 import { CURRENCIES } from 'utils/currencies';
+import { SORT_TYPES } from 'utils/sortBy';
 
 import Layout from 'components/Layout';
 import CurrencyColor from 'components/CurrencyColor';
@@ -26,6 +27,7 @@ class Settings extends React.Component {
     const periodDay = () => selectPeriod('day');
     const periodWeek = () => selectPeriod('week');
     const periodMonth = () => selectPeriod('month');
+    const { selectSortBy, sortBy } = this.props.ui;
 
     return (
       <Layout footer alwaysLoad>
@@ -50,6 +52,29 @@ class Settings extends React.Component {
                 selected={ period === 'month' }
               >
                 1 Month
+              </ToggleOption>
+            </SettingToggle>
+          </Section>
+          <Section>
+            <Heading>Sort currencies by</Heading>
+            <SettingToggle>
+              <ToggleOption
+                onClick={ () => { selectSortBy(SORT_TYPES.default) } }
+                selected={ sortBy === SORT_TYPES.default }
+              >
+                Default
+              </ToggleOption>
+              <ToggleOption
+                onClick={ () => { selectSortBy(SORT_TYPES.marketCap) } }
+                selected={ sortBy === SORT_TYPES.marketCap }
+              >
+                Market Cap
+              </ToggleOption>
+              <ToggleOption
+                onClick={ () => { selectSortBy(SORT_TYPES.price) } }
+                selected={ sortBy === SORT_TYPES.price }
+              >
+                Price
               </ToggleOption>
             </SettingToggle>
           </Section>

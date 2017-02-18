@@ -19,6 +19,7 @@ class Prices extends React.Component {
     } = this.props.prices;
     const {
       visibleCurrencies,
+      sortBy
     } = this.props.ui;
 
     return (
@@ -30,6 +31,7 @@ class Prices extends React.Component {
           <PriceList
             assets={ priceListData }
             visibleCurrencies={ visibleCurrencies }
+            sortBy={ sortBy }
           />
         ) }
       </Layout>
