@@ -59,22 +59,16 @@ class Settings extends React.Component {
             <Heading>Sort currencies by</Heading>
             <SettingToggle>
               <ToggleOption
-                onClick={ () => { selectSortBy(SORT_TYPES.default) } }
-                selected={ sortBy === SORT_TYPES.default }
-              >
-                Default
-              </ToggleOption>
-              <ToggleOption
                 onClick={ () => { selectSortBy(SORT_TYPES.marketCap) } }
                 selected={ sortBy === SORT_TYPES.marketCap }
               >
                 Market Cap
               </ToggleOption>
               <ToggleOption
-                onClick={ () => { selectSortBy(SORT_TYPES.price) } }
-                selected={ sortBy === SORT_TYPES.price }
+                onClick={ () => { selectSortBy(SORT_TYPES.change) } }
+                selected={ sortBy === SORT_TYPES.change }
               >
-                Price
+                % Change Today
               </ToggleOption>
             </SettingToggle>
           </Section>

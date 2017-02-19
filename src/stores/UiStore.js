@@ -12,7 +12,7 @@ const AVAILABLE_VIEWS = [
 export default class Ui {
   @observable view = AVAILABLE_VIEWS[0];
   @observable visibleCurrencies = CURRENCIES.map(currency => currency.symbol);
-  @observable sortBy = SORT_TYPES.default;
+  @observable sortBy = SORT_TYPES.marketCap;
 
   /* actions */
 
