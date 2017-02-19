@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import numeral from 'numeral';
 import { observable, computed, action, autorun } from 'mobx';
 import ReconnectingWebsocket from 'reconnecting-websocket';
 
@@ -157,7 +156,7 @@ export default class PricesStore {
   marketCap = (currency) => {
     const marketCap = 0.0;
     if (this.isLoaded) {
-      return numeral(this.marketData[currency]).format('0.0a');
+      return this.marketData[currency];
     }
     return marketCap;
   }

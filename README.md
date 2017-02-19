@@ -12,15 +12,27 @@ or get in touch with us on [Twitter](https://twitter.com/getlionshare).
 
 _Special thanks to [Coinbase](http://coinbase.com/) for sponsoring the release of Lionshare as open source software. If you’re interested in building products to reinvent the future of finance, [get in touch](https://www.coinbase.com/careers)._
 
+
 ## Development
 
 Electron specific code, including application configuration and Webpack build files,
 can be found under `desktop/`. All React application code is stored inside `src/`.
 
+### Installation
+
+To install for development, clone the repository and install the dependencies with `yarn`.
+
+```bash
+$ git clone git@github.com:lionsharecapital/lionshare-desktop.gitfd$a
+$ cd lionshare-desktop
+$ yarn 
+```
+
+### Running
+
 To run development application and Webpack server:
 
 ```
-yarn
 yarn run dev
 ```
 

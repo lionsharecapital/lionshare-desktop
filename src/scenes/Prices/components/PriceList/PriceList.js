@@ -2,8 +2,10 @@ import React from 'react';
 import { Flex } from 'reflexbox';
 import { observer } from 'mobx-react';
 import { Line } from 'react-chartjs-2';
+import numeral from 'numeral';
 
 import { formatNumber } from 'utils/formatting';
+import { sortByType } from 'utils/sortBy';
 
 import CurrencyColor from 'components/CurrencyColor';
 import ChangeHighlight from 'components/ChangeHighlight';
@@ -13,12 +15,13 @@ import classNames from 'classnames/bind';
 import styles from './PriceList.scss';
 const cx = classNames.bind(styles);
 
-const PriceList = ({ assets, visibleCurrencies }) => {
+const PriceList = ({ assets, visibleCurrencies, sortBy }) => {
   const includedAssets = assets.filter(asset => visibleCurrencies.includes(asset.symbol));
+  const sorted = sortByType(includedAssets, sortBy);
 
   return (
     <Flex auto column className={ styles.container }>
-      { includedAssets.map(asset => (
+      { sorted.map(asset => (
         <AssetRow
           key={ asset.symbol }
           { ...asset }
@@ -105,7 +108,7 @@ const AssetRow = ({
           </Flex>
           <Flex justify="space-between" className={ styles.cap }>
             <span className={ styles.label }>M</span>
-            <span>${ marketCap }</span>
+            <span>${ numeral(marketCap).format('0.0a') }</span>
           </Flex>
         </Flex>
       </Flex>
