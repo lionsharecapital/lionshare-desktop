@@ -121,6 +121,11 @@ const CURRENCIES = [
     symbol: 'IOC',
     color: '#84D0F4',
   },
+  {
+    name: 'Golem',
+    symbol: 'GNT',
+    color: '#01d3e0',
+  },
 ];
 
 const currencyData = (currencySymbol) => (
