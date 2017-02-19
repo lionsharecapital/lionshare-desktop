@@ -63,7 +63,7 @@ class Settings extends React.Component {
             </SettingToggle>
           </Section>
           <Section>
-            <Heading>Sort currencies by</Heading>
+            <Heading>Sort Prices By</Heading>
             <SettingToggle>
               <ToggleOption
                 onClick={ () => { setSortBy(SORT_TYPES.marketCap) } }
@@ -75,7 +75,7 @@ class Settings extends React.Component {
                 onClick={ () => { setSortBy(SORT_TYPES.change) } }
                 selected={ sortBy === SORT_TYPES.change }
               >
-                % Change Today
+                % Change
               </ToggleOption>
             </SettingToggle>
           </Section>
@@ -171,7 +171,7 @@ const CheckboxSetting = ({ label, onChange, checked }) => (
       checked={ checked }
     />
   </Flex>
-)
+);
 
 const Link = ({ children, onClick }) => (
   <span className={ styles.link } onClick={ onClick } role="button">
