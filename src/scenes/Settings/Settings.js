@@ -27,7 +27,14 @@ class Settings extends React.Component {
     const periodDay = () => selectPeriod('day');
     const periodWeek = () => selectPeriod('week');
     const periodMonth = () => selectPeriod('month');
-    const { selectSortBy, sortBy } = this.props.ui;
+    const {
+      setLaunchOnStartup,
+      launchOnStartup,
+      setDockItemVisible,
+      dockItemVisible,
+      setSortBy,
+      sortBy
+    } = ui;
 
     return (
       <Layout footer alwaysLoad>
@@ -59,13 +66,13 @@ class Settings extends React.Component {
             <Heading>Sort currencies by</Heading>
             <SettingToggle>
               <ToggleOption
-                onClick={ () => { selectSortBy(SORT_TYPES.marketCap) } }
+                onClick={ () => { setSortBy(SORT_TYPES.marketCap) } }
                 selected={ sortBy === SORT_TYPES.marketCap }
               >
                 Market Cap
               </ToggleOption>
               <ToggleOption
-                onClick={ () => { selectSortBy(SORT_TYPES.change) } }
+                onClick={ () => { setSortBy(SORT_TYPES.change) } }
                 selected={ sortBy === SORT_TYPES.change }
               >
                 % Change Today
@@ -84,6 +91,21 @@ class Settings extends React.Component {
               GDAX/Poloniex
               <Link onClick={ openGitHubFaq }>Why?</Link>
             </Setting>
+          </Section>
+          <Section>
+            <Heading>MacOS Preferences</Heading>
+            <div className={ styles.macOSPreferences }>
+              <CheckboxSetting
+                label="Show dock icon"
+                onChange={ setDockItemVisible }
+                checked={ dockItemVisible }
+              />
+              <CheckboxSetting
+                label="Launch Lionshare on startup"
+                onChange={ setLaunchOnStartup }
+                checked={ launchOnStartup }
+              />
+            </div>
           </Section>
           <Section>
             <Heading>
@@ -135,6 +157,22 @@ const Setting = ({ children }) => (
   </div>
 );
 
+const CheckboxSetting = ({ label, onChange, checked }) => (
+  <Flex
+    align="center"
+    justify="space-between"
+    className={ styles.checkboxSetting }
+    auto
+  >
+    <Flex>{ label }</Flex>
+    <input
+      type="checkbox"
+      onChange={ (e) => onChange(e.target.checked) }
+      checked={ checked }
+    />
+  </Flex>
+)
+
 const Link = ({ children, onClick }) => (
   <span className={ styles.link } onClick={ onClick } role="button">
     { children }
@@ -157,25 +195,19 @@ const Asset = observer(({
   const onChange = () => toggleCurrency(symbol);
   const checked = visibleCurrencies.includes(symbol);
 
-  return (
-    <Flex
-      align="center"
-      justify="space-between"
-      className={ styles.asset }
-      auto
-    >
-      <Flex>
-        <CurrencyColor color={ color } className={ styles.colorDot } />
-        { name }&nbsp;<span className={ styles.symbol }>({ symbol })</span>
-      </Flex>
-      <span>
-        <input
-          type="checkbox"
-          onChange={ onChange }
-          checked={ checked }
-        />
-      </span>
+  const label = (
+    <Flex>
+      <CurrencyColor color={ color } className={ styles.colorDot } />
+      { name }&nbsp;<span className={ styles.symbol }>({ symbol })</span>
     </Flex>
+  );
+
+  return (
+    <CheckboxSetting
+      label={ label }
+      onChange={ onChange }
+      checked={ checked }
+    />
   );
 });
 

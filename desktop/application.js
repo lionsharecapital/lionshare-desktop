@@ -1,15 +1,16 @@
 import electron from 'electron';
-import { ipcMain } from 'electron';
 import path from 'path';
 import url from 'url';
 import isDev from 'electron-is-dev';
 import ua from 'universal-analytics';
 import { machineId } from 'electron-machine-id';
+import { ipcMain } from 'electron';
 
 import scheduleUpdates from './updates';
 import { create as createTray } from './tray';
 import { createMenu } from './menu';
 import config from './config';
+import setupAutoLaunch from './autoLaunch';
 
 const app = electron.app;
 
@@ -85,10 +86,21 @@ app.on('ready', () => {
   mainWindow = createMainWindow();
   if (isDev) mainWindow.webContents.openDevTools({ mode: 'detach' });
   if (!isDev) scheduleUpdates();
-  const tray = createTray(mainWindow);
   createMenu(app, mainWindow);
+  createTray(app, mainWindow);
+  setupAutoLaunch(app, mainWindow);
 
   const page = mainWindow.webContents;
+
+  ipcMain.on('settingsUpdated', (_event, settings) => {
+    if (settings.dockItemVisible) {
+      if (!app.dock.isVisible()) {
+        app.dock.show();
+      }
+    } else if (app.dock.isVisible()) {
+      app.dock.hide();
+    }
+  });
 
   page.on('dom-ready', () => {
     mainWindow.show();
@@ -96,14 +108,6 @@ app.on('ready', () => {
 
   app.on('activate', () => {
     mainWindow.show();
-  });
-
-  ipcMain.on('priceUpdate', (_event, change) => {
-    if (config.get('priceSetting')) {
-      tray.setTitle(change);
-    } else {
-      tray.setTitle('');
-    }
   });
 });
 

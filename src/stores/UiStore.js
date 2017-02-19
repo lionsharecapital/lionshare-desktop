@@ -1,3 +1,4 @@
+import { ipcRenderer } from 'electron';
 import { observable, action, autorun } from 'mobx';
 import { CURRENCIES } from 'utils/currencies';
 import { SORT_TYPES } from 'utils/sortBy';
@@ -13,6 +14,8 @@ export default class Ui {
   @observable view = AVAILABLE_VIEWS[0];
   @observable visibleCurrencies = CURRENCIES.map(currency => currency.symbol);
   @observable sortBy = SORT_TYPES.marketCap;
+  @observable dockItemVisible = true;
+  @observable launchOnStartup = false;
 
   /* actions */
 
@@ -30,7 +33,7 @@ export default class Ui {
     }
   }
 
-  @action selectSortBy = (sortBy) => {
+  @action setSortBy = (sortBy) => {
     this.sortBy = sortBy;
   };
 
@@ -43,21 +46,44 @@ export default class Ui {
     this.visibleCurrencies = [];
   }
 
+  @action setLaunchOnStartup = (launchOnStartup) => {
+    this.launchOnStartup = launchOnStartup;
+  }
+
+  @action setDockItemVisible = (visible) => {
+    this.dockItemVisible = visible;
+  }
+
   @action fromJSON = (jsonData) => {
     const parsed = JSON.parse(jsonData);
     this.view = parsed.view;
     this.visibleCurrencies.replace(parsed.visibleCurrencies);
-    this.sortBy = parsed.sortBy || this.sortBy;
+
+    const setIfDefined = (key) => {
+      if (typeof parsed[key] !== 'undefined') {
+        this[key] = parsed[key];
+      }
+    };
+
+    setIfDefined('dockItemVisible');
+    setIfDefined('sortBy');
+    setIfDefined('launchOnStartup');
   }
 
   /* other */
 
-  toJSON = () => (
-    JSON.stringify({
+  toObject = () => {
+    return {
       view: this.view,
       visibleCurrencies: this.visibleCurrencies,
       sortBy: this.sortBy,
-    })
+      launchOnStartup: this.launchOnStartup,
+      dockItemVisible: this.dockItemVisible,
+    };
+  }
+
+  toJSON = () => (
+    JSON.stringify(this.toObject())
   )
 
   constructor() {
@@ -68,6 +94,9 @@ export default class Ui {
     // Persist store to localStorage
     autorun(() => {
       localStorage.setItem(UI_STORE_KEY, this.toJSON());
+
+      // Send settings to main process for tray configuration
+      ipcRenderer.send('settingsUpdated', this.toObject());
     });
   }
 }

@@ -4,6 +4,7 @@
 *.swo
 *.*sublime*
 **/node_modules/*
+node_modules/
 Lionshare-*
 dist
 desktop/dist

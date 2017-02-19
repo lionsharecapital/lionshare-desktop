@@ -1,12 +1,13 @@
 import path from 'path';
 import electron from 'electron';
+import { ipcMain } from 'electron';
+
+import config from './config';
 
 const app = electron.app;
 let tray = null;
 
-const create = win => {
-  if (tray) return;
-
+const newTray = win => {
   const toggleWin = () => win.isVisible() ? win.hide() : win.show();
 
   const contextMenu = electron.Menu.buildFromTemplate([
@@ -32,6 +33,21 @@ const create = win => {
   tray.on('double-click', () => toggleWin());
   return tray;
 };
+
+const create = (app, mainWindow) => {
+  tray = newTray(mainWindow);
+
+  ipcMain.on('priceUpdate', (_event, change) => {
+    if (tray) {
+      if (config.get('priceSetting')) {
+        tray.setTitle(change);
+      } else {
+        tray.setTitle('');
+      }
+    }
+  });
+}
+
 
 export {
   create,
