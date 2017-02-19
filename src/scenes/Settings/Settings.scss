@@ -32,6 +32,10 @@
   color: $darkGray;
 }
 
+.checkboxSetting {
+  padding: 5px 0;
+}
+
 .footnote {
   padding-top: 10px;
   font-size: 11px;
@@ -49,19 +53,14 @@
   }
 }
 
-.assetList {
-  padding-top: 15px;
+.assetList,
+.macOSPreferences {
+  padding-top: 10px;
   border-top: 1px solid $darkGray;
 }
 
 .colorDot {
   margin: 3px 8px 0 0;
-}
-
-.asset {
-  & + .asset {
-    padding-top: 15px;
-  }
 }
 
 .symbol {

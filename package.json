@@ -24,6 +24,7 @@
   "author": "Jori Lallo <jori@coinbase.com>, Ben Jennings <ben@coinbase.com>, Maksim Stepanenko <maksim@coinbase.com>",
   "license": "MIT",
   "dependencies": {
+    "auto-launch": "^5.0.1",
     "babel-core": "^6.4.5",
     "babel-eslint": "^4.1.8",
     "babel-loader": "^6.2.1",
