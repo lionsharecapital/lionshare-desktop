@@ -8,18 +8,35 @@
 .option {
   flex: 1;
   padding: 10px 0px;
-  border-right: 1px solid $darkGray;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
 
   &:hover {
     color: $white;
   }
 
+  & + .option {
+    border-left: 1px solid $darkGray;
+  }
+
   &:last-child {
-    border-right: none;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
   }
 
   &.selected {
     color: $white;
     background-color: $highlight;
+    border-left: 1px solid $highlight;
+    border-right: 1px solid $highlight;
+  }
+}
+
+.selected + .option {
+  border-left: 1px solid transparent;
+  border-right: 1px solid $darkGray;
+
+  &:last-child {
+    border-right: 1px solid transparent;
   }
 }
