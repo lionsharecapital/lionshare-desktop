@@ -37,13 +37,13 @@ const AssetRow = ({
   color,
   price,
   change,
+  direction,
   chartData,
   highestPrice,
   lowestPrice,
   marketCap,
   openCurrency,
 }) => {
-  const direction = change >= 0 ? 'up' : 'down';
   const chartOptions = {
     animation: false,
     legend: {

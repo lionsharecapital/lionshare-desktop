@@ -46,6 +46,7 @@ export default class PricesStore {
         const color = currencyColors[key];
         const labels = [];
         const historic = [];
+        const change = this.changes[key] * 100;
         for (const rate of value) {
           historic.push(parseFloat(rate));
           labels.push('');
@@ -55,7 +56,8 @@ export default class PricesStore {
           color,
           symbol: key,
           price: this.rates[key],
-          change: this.changes[key] * 100,
+          change,
+          direction: change >= 0 ? 'up' : 'down',
           chartData: {
             labels,
             datasets: [{
