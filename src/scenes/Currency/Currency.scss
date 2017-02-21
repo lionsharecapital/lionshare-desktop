@@ -8,3 +8,42 @@
 .change {
   font-size: 14px;
 }
+
+.back {
+  color: $darkGray;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.titleDull {
+  color: $darkGray;
+}
+
+.period {
+  color: $darkGray;
+
+  &:hover {
+    color: $white;
+  }
+
+  & + .period {
+    margin-left: 10px;
+  }
+}
+
+.periodActive {
+  position: relative;
+  color: $white;
+
+  &:after {
+    position: absolute;
+    left: 0;
+    bottom: -11px;
+    content: '';
+    width: 18px;
+    height: 1px;
+    background-color: $white;
+  }
+}

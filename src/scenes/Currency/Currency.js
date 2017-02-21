@@ -10,6 +10,8 @@ import Layout from 'components/Layout';
 import Section from './components/Section';
 
 import styles from './Currency.scss';
+import classNames from 'classnames/bind';
+const cx = classNames.bind(styles);
 
 @inject('prices', 'ui')
 @observer
@@ -36,6 +38,19 @@ class Currency extends React.Component {
       >
         <Flex column auto>
           <Section>
+            <Flex justify="space-between">
+              <div role="button" className={ styles.back }>← Back</div>
+              <div className={ styles.title }>
+                Bitcoin <span className={ styles.titleDull }>(BTC)</span>
+              </div>
+              <Flex>
+                <div role="button" className={ styles.period }>1D</div>
+                <div role="button" className={ cx(styles.period, styles.periodActive) }>1W</div>
+                <div role="button" className={ styles.period }>1M</div>
+              </Flex>
+            </Flex>
+          </Section>
+          <Section>
             <div className={ styles.price }>
               <ChangeHighlight trigger={ currencyData.price }>
                 { formatNumber(currencyData.price, 'USD', { minPrecision: true }) }
@@ -47,6 +62,7 @@ class Currency extends React.Component {
                                                     minPrecision: true }) }%
               </ColoredChange>
             </div>
+            <div>Chart goes here</div>
           </Section>
           <Section>
             More data
