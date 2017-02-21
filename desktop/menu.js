@@ -12,7 +12,11 @@ const createMenu = (app, mainWindow) => {
         { label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
         { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
         { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
-        { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
+        {
+          label: 'Select All',
+          accelerator: 'CmdOrCtrl+A',
+          selector: 'selectAll:',
+        },
       ],
     },
     {
@@ -21,12 +25,16 @@ const createMenu = (app, mainWindow) => {
         {
           label: 'Prices',
           accelerator: 'CmdOrCtrl+1',
-          click() { mainWindow.webContents.send('showPrices'); },
+          click() {
+            mainWindow.webContents.send('showPrices');
+          },
         },
         {
           label: 'Portfolio',
           accelerator: 'CmdOrCtrl+2',
-          click() { mainWindow.webContents.send('showPortfolio'); },
+          click() {
+            mainWindow.webContents.send('showPortfolio');
+          },
         },
         { type: 'separator' },
         {
@@ -66,15 +74,21 @@ const createMenu = (app, mainWindow) => {
       submenu: [
         {
           label: 'Learn More',
-          click() { shell.openExternal('https://lionshare.capital'); },
+          click() {
+            shell.openExternal('https://lionshare.capital');
+          },
         },
         {
           label: 'Donate',
-          click() { shell.openExternal('https://lionshare.capital#donate'); },
+          click() {
+            shell.openExternal('https://lionshare.capital#donate');
+          },
         },
         {
           label: 'Twitter (@getlionshare)',
-          click() { shell.openExternal('https://twitter.com/getlionshare'); },
+          click() {
+            shell.openExternal('https://twitter.com/getlionshare');
+          },
         },
       ],
     },
@@ -89,7 +103,9 @@ const createMenu = (app, mainWindow) => {
         {
           label: 'Preferences…',
           accelerator: 'Cmd+,',
-          click() { mainWindow.webContents.send('showSettings'); },
+          click() {
+            mainWindow.webContents.send('showSettings');
+          },
         },
         { type: 'separator' },
         {
@@ -131,6 +147,4 @@ const createMenu = (app, mainWindow) => {
   Menu.setApplicationMenu(menu);
 };
 
-export {
-  createMenu,
-};
+export { createMenu };

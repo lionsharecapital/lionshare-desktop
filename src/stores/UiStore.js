@@ -4,11 +4,7 @@ import { CURRENCIES } from 'utils/currencies';
 import { SORT_TYPES } from 'utils/sortBy';
 
 const UI_STORE_KEY = 'UI_STORE_KEY';
-const AVAILABLE_VIEWS = [
-  'prices',
-  'portfolio',
-  'settings',
-];
+const AVAILABLE_VIEWS = ['prices', 'portfolio', 'settings'];
 
 export default class Ui {
   @observable view = AVAILABLE_VIEWS[0];
@@ -25,41 +21,42 @@ export default class Ui {
     }
   }
 
-  @action toggleCurrency = (currency) => {
+  @action toggleCurrency = currency => {
     if (this.visibleCurrencies.includes(currency)) {
       this.visibleCurrencies.remove(currency);
     } else {
       this.visibleCurrencies.push(currency);
     }
-  }
+  };
 
-  @action setSortBy = (sortBy) => {
+  @action setSortBy = sortBy => {
     this.sortBy = sortBy;
   };
 
   @action toggleCurrenciesAll = () => {
     this.toggleCurrenciesNone(); // Clear first
-    CURRENCIES.forEach(currency => this.visibleCurrencies.push(currency.symbol));
-  }
+    CURRENCIES.forEach(currency =>
+      this.visibleCurrencies.push(currency.symbol));
+  };
 
   @action toggleCurrenciesNone = () => {
     this.visibleCurrencies = [];
-  }
+  };
 
-  @action setLaunchOnStartup = (launchOnStartup) => {
+  @action setLaunchOnStartup = launchOnStartup => {
     this.launchOnStartup = launchOnStartup;
-  }
+  };
 
-  @action setDockItemVisible = (visible) => {
+  @action setDockItemVisible = visible => {
     this.dockItemVisible = visible;
-  }
+  };
 
-  @action fromJSON = (jsonData) => {
+  @action fromJSON = jsonData => {
     const parsed = JSON.parse(jsonData);
     this.view = parsed.view;
     this.visibleCurrencies.replace(parsed.visibleCurrencies);
 
-    const setIfDefined = (key) => {
+    const setIfDefined = key => {
       if (typeof parsed[key] !== 'undefined') {
         this[key] = parsed[key];
       }
@@ -68,7 +65,7 @@ export default class Ui {
     setIfDefined('dockItemVisible');
     setIfDefined('sortBy');
     setIfDefined('launchOnStartup');
-  }
+  };
 
   /* other */
 
@@ -80,11 +77,9 @@ export default class Ui {
       launchOnStartup: this.launchOnStartup,
       dockItemVisible: this.dockItemVisible,
     };
-  }
+  };
 
-  toJSON = () => (
-    JSON.stringify(this.toObject())
-  )
+  toJSON = () => JSON.stringify(this.toObject());
 
   constructor() {
     // Rehydrate store from persisted data

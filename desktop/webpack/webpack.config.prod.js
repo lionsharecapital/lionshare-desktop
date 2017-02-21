@@ -16,7 +16,9 @@ const productionWebpackConfig = Object.assign(commonWebpackConfig, {
   },
 });
 
-productionWebpackConfig.plugins.push(new webpack.optimize.OccurenceOrderPlugin());
+productionWebpackConfig.plugins.push(
+  new webpack.optimize.OccurenceOrderPlugin()
+);
 productionWebpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
 productionWebpackConfig.plugins.push(
   new webpack.optimize.UglifyJsPlugin({

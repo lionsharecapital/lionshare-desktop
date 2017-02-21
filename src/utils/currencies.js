@@ -128,15 +128,12 @@ const CURRENCIES = [
   },
 ];
 
-const currencyData = (currencySymbol) => (
-  _.find(CURRENCIES, data => data.symbol === currencySymbol)
-);
+const currencyData = currencySymbol =>
+  _.find(CURRENCIES, data => data.symbol === currencySymbol);
 
 const currencyColors = {};
-CURRENCIES.forEach(currency => currencyColors[currency.symbol] = currency.color);
+CURRENCIES.forEach(currency => {
+  currencyColors[currency.symbol] = currency.color;
+});
 
-export {
-  CURRENCIES,
-  currencyData,
-  currencyColors,
-};
+export { CURRENCIES, currencyData, currencyColors };

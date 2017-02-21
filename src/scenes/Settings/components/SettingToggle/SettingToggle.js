@@ -6,8 +6,8 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 const SettingToggle = ({ children }) => (
-  <Flex className={ styles.container }>
-    { children }
+  <Flex className={styles.container}>
+    {children}
   </Flex>
 );
 
@@ -16,14 +16,11 @@ const ToggleOption = ({ onClick, selected, children }) => (
     align="center"
     justify="center"
     role="button"
-    onClick={ onClick }
-    className={ cx(styles.option, { selected }) }
+    onClick={onClick}
+    className={cx(styles.option, { selected })}
   >
-    { children }
+    {children}
   </Flex>
 );
 
-export {
-  SettingToggle,
-  ToggleOption,
-};
+export { SettingToggle, ToggleOption };

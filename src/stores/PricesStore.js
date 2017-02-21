@@ -46,10 +46,10 @@ export default class PricesStore {
         const color = currencyColors[key];
         const labels = [];
         const historic = [];
-        for (const rate of value) {
+        value.forEach(rate => {
           historic.push(parseFloat(rate));
           labels.push('');
-        }
+        });
 
         data.push({
           color,
@@ -58,11 +58,13 @@ export default class PricesStore {
           change: this.changes[key] * 100,
           chartData: {
             labels,
-            datasets: [{
-              radius: 0,
-              borderColor: color,
-              data: historic,
-            }],
+            datasets: [
+              {
+                radius: 0,
+                borderColor: color,
+                data: historic,
+              },
+            ],
           },
           highestPrice: this.highestPrice(key),
           lowestPrice: this.lowestPrice(key),
@@ -78,7 +80,9 @@ export default class PricesStore {
 
   @action fetchData = async () => {
     try {
-      const rateRes = await fetch(`${API_URL}/api/prices?period=${ this.period }`);
+      const rateRes = await fetch(
+        `${API_URL}/api/prices?period=${this.period}`
+      );
       const rateData = await rateRes.json();
       this.rateData = rateData.data;
 
@@ -93,13 +97,16 @@ export default class PricesStore {
         // Only show the error if the first load fails
         this.error = 'Error loading content, please check your connection and try again.';
       }
-      setTimeout(() => {
-        this.fetchData();
-      }, 2000);
+      setTimeout(
+        () => {
+          this.fetchData();
+        },
+        2000
+      );
     }
-  }
+  };
 
-  @action updatePrice = (message) => {
+  @action updatePrice = message => {
     const data = JSON.parse(message.data);
     const cryptoCurrency = data.cryptoCurrency;
     const price = parseFloat(data.price);
@@ -107,67 +114,65 @@ export default class PricesStore {
       const index = this.rateData[cryptoCurrency].length - 1;
       this.rateData[cryptoCurrency][index] = price;
     }
-  }
+  };
 
   @action connectToWebsocket = () => {
     this.websocket = new ReconnectingWebsocket(WS_URL, [], {});
     this.websocket.addEventListener('message', this.updatePrice);
-  }
+  };
 
-  @action selectPeriod = (period) => {
+  @action selectPeriod = period => {
     this.period = period;
     this.fetchData();
-  }
+  };
 
-  @action fromJSON = (jsonData) => {
+  @action fromJSON = jsonData => {
     const parsed = JSON.parse(jsonData);
     this.rateData = parsed.rateData;
     this.marketData = parsed.marketData;
     if (parsed.period) this.period = parsed.period;
     this.isLoaded = true;
-  }
+  };
 
   /* other */
 
-  toJSON = () => (
-    JSON.stringify({
-      rateData: this.rateData,
-      marketData: this.marketData,
-      period: this.period,
-    })
-  )
+  toJSON = () => JSON.stringify({
+    rateData: this.rateData,
+    marketData: this.marketData,
+    period: this.period,
+  });
 
-  highestPrice = (currency) => {
+  highestPrice = currency => {
     let highestPrice = 0.0;
     if (this.isLoaded) {
       highestPrice = Math.max(...this.rateData[currency]);
     }
     return highestPrice;
-  }
+  };
 
-  lowestPrice = (currency) => {
+  lowestPrice = currency => {
     const lowestPrice = 0.0;
     if (this.isLoaded) {
       return Math.min(...this.rateData[currency]);
     }
     return lowestPrice;
-  }
+  };
 
-  marketCap = (currency) => {
+  marketCap = currency => {
     const marketCap = 0.0;
     if (this.isLoaded) {
       return this.marketData[currency];
     }
     return marketCap;
-  }
+  };
 
   convert = (amount, currency) => {
     return amount * this.rates[currency];
-  }
+  };
 
   change = (amount, currency) => {
     return this.convert(amount, currency) * this.changes[currency];
-  }
+  };
 
   constructor() {
     // Rehydrate store from persisted data
@@ -187,8 +192,11 @@ export default class PricesStore {
     // them from the websocket messages, there is no need
     // to update more frequently than this.
     const interval = 60 * 60 * 1000;
-    setInterval(() => {
-      this.fetchData();
-    }, interval);
+    setInterval(
+      () => {
+        this.fetchData();
+      },
+      interval
+    );
   }
 }

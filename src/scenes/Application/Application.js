@@ -13,7 +13,7 @@ import Settings from 'scenes/Settings';
 class Application extends React.Component {
   static propTypes = {
     ui: PropTypes.object.isRequired,
-  }
+  };
 
   renderView = () => {
     switch (this.props.ui.view) {
@@ -24,14 +24,14 @@ class Application extends React.Component {
       case 'settings':
         return <Settings />;
       default:
-        // no-op
+      // no-op
     }
-  }
+  };
 
   render() {
     return (
       <Flex auto>
-        { this.renderView() }
+        {this.renderView()}
       </Flex>
     );
   }

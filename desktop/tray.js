@@ -16,7 +16,9 @@ const newTray = win => {
     },
   ]);
 
-  tray = new electron.Tray(path.join(__dirname, '../src/assets/icons/menubarTemplate.png'));
+  tray = new electron.Tray(
+    path.join(__dirname, '../src/assets/icons/menubarTemplate.png')
+  );
   // Disabling highlight mode makes toggling more reliable ¯\_(ツ)_/¯
   // https://github.com/electron/electron/issues/1825
   tray.setHighlightMode(false);
@@ -46,9 +48,6 @@ const create = (app, mainWindow) => {
       }
     }
   });
-}
-
-
-export {
-  create,
 };
+
+export { create };

@@ -111,7 +111,6 @@ app.on('ready', () => {
   });
 });
 
-
 app.on('before-quit', () => {
   isQuitting = true;
   config.set('lastWindowState', mainWindow.getBounds());
@@ -122,8 +121,11 @@ const trackUser = async () => {
   const id = await machineId();
   const user = ua('UA-90111350-1', id, { strictCidFormat: false, https: true });
   user.pageview('/').send();
-  setInterval(() => {
-    user.pageview('/').send();
-  }, 60000 * 5);
+  setInterval(
+    () => {
+      user.pageview('/').send();
+    },
+    60000 * 5
+  );
 };
 if (!isDev) trackUser();

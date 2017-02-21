@@ -10,7 +10,7 @@ class Prices extends React.Component {
   static propTypes = {
     prices: PropTypes.object.isRequired,
     ui: PropTypes.object.isRequired,
-  }
+  };
 
   render() {
     const {
@@ -19,21 +19,17 @@ class Prices extends React.Component {
     } = this.props.prices;
     const {
       visibleCurrencies,
-      sortBy
+      sortBy,
     } = this.props.ui;
 
     return (
-      <Layout
-        title={ 'Prices' }
-        activeTab="prices"
-      >
-        { isLoaded && (
+      <Layout title={'Prices'} activeTab="prices">
+        {isLoaded &&
           <PriceList
-            assets={ priceListData }
-            visibleCurrencies={ visibleCurrencies }
-            sortBy={ sortBy }
-          />
-        ) }
+            assets={priceListData}
+            visibleCurrencies={visibleCurrencies}
+            sortBy={sortBy}
+          />}
       </Layout>
     );
   }

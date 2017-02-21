@@ -12,11 +12,12 @@ if (__DEV__) {
   DevTools = require('mobx-react-devtools').default;
 }
 
-render((
+render(
   <Flex auto>
-    <Provider { ...stores }>
+    <Provider {...stores}>
       <Application />
     </Provider>
-    { false && <DevTools position={{ bottom: 0, right: 0 }} /> }
-  </Flex>
-), document.getElementById('root'));
+    {false && <DevTools position={{ bottom: 0, right: 0 }} />}
+  </Flex>,
+  document.getElementById('root')
+);

@@ -22,7 +22,7 @@ var config = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/static/'
+    publicPath: '/static/',
   },
   target: 'electron',
   module: {
@@ -33,23 +33,30 @@ var config = {
         exclude: /node_modules/,
       },
       { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.css$/, loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]' },
-      { test: /\.scss$/, loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!resolve-url!sass?outputStyle=expanded' },
-      { test: /\.otf$/, loader: 'url-loader?mimetype=application/font-woff&name=public/fonts/[name].[ext]' },
-    ]
+      {
+        test: /\.css$/,
+        loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!resolve-url!sass?outputStyle=expanded',
+      },
+      {
+        test: /\.otf$/,
+        loader: 'url-loader?mimetype=application/font-woff&name=public/fonts/[name].[ext]',
+      },
+    ],
   },
   resolve: {
     // you can now require('file') instead of require('file.json')
     extensions: ['', '.js', '.json'],
-    root: path.resolve('./src'),
+    root: path.resolve(__dirname, '../../src'),
   },
-  plugins: [
-    definePlugin,
-  ],
+  plugins: [definePlugin],
   constants: {
     API_URL: API_URL,
     WS_URL: WS_URL,
-  }
+  },
 };
 
 module.exports = config;

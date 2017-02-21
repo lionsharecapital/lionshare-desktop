@@ -1,8 +1,2 @@
-import {
-  SettingToggle,
-  ToggleOption,
-} from './SettingToggle';
-export {
-  SettingToggle,
-  ToggleOption,
-};
+import { SettingToggle, ToggleOption } from './SettingToggle';
+export { SettingToggle, ToggleOption };
