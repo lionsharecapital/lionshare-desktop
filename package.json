@@ -13,7 +13,7 @@
     "dev": "concurrently -k 'node desktop/server.dev.js' 'npm start'",
     "lint": "eslint 'src/**/*.js' --quiet",
     "lint:staged": "lint-staged",
-    "prettier": "prettier 'src/**/*.js' 'desktop/**/*.js' --write --single-quote --trailing-comma es5"
+    "prettier": "prettier 'src/**/*.js' 'desktop/**/*.js' --write --single-quote --trailing-comma"
   },
   "pre-commit": "lint:staged",
   "lint-staged": {
@@ -83,7 +83,7 @@
     "node-sass": "^3.4.2",
     "node-static": "^0.7.7",
     "pre-commit": "^1.2.2",
-    "prettier": "^0.18.0",
+    "prettier": "git+ssh://git@github.com/prettier/prettier.git",
     "rebass": "^0.2.6",
     "resolve-url": "^0.2.1",
     "resolve-url-loader": "^1.4.3",

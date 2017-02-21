@@ -25,7 +25,7 @@ Settings extends React.Component {
     const { ui } = this.props;
     const openGitHubFaq = () =>
       shell.openExternal(
-        'https://github.com/lionsharecapital/lionshare-desktop#faq',
+        'https://github.com/lionsharecapital/lionshare-desktop#faq'
       );
     const { selectPeriod, period } = this.props.prices;
     const periodDay = () => selectPeriod('day');

@@ -81,7 +81,7 @@ export default class PricesStore {
   @action fetchData = async () => {
     try {
       const rateRes = await fetch(
-        `${API_URL}/api/prices?period=${this.period}`,
+        `${API_URL}/api/prices?period=${this.period}`
       );
       const rateData = await rateRes.json();
       this.rateData = rateData.data;
@@ -101,7 +101,7 @@ export default class PricesStore {
         () => {
           this.fetchData();
         },
-        2000,
+        2000
       );
     }
   };
@@ -196,7 +196,7 @@ export default class PricesStore {
       () => {
         this.fetchData();
       },
-      interval,
+      interval
     );
   }
 }

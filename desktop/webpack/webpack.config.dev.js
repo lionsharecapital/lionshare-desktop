@@ -12,7 +12,7 @@ developmentWebpackConfig = Object.assign(commonWebpackConfig, {
 });
 
 developmentWebpackConfig.plugins.push(
-  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.optimize.OccurenceOrderPlugin()
 );
 developmentWebpackConfig.plugins.push(new webpack.NoErrorsPlugin());
 

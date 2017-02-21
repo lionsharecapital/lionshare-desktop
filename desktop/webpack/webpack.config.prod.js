@@ -17,7 +17,7 @@ const productionWebpackConfig = Object.assign(commonWebpackConfig, {
 });
 
 productionWebpackConfig.plugins.push(
-  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.optimize.OccurenceOrderPlugin()
 );
 productionWebpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
 productionWebpackConfig.plugins.push(
@@ -25,14 +25,14 @@ productionWebpackConfig.plugins.push(
     compress: {
       warnings: false,
     },
-  }),
+  })
 );
 productionWebpackConfig.plugins.push(
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify('production'),
     },
-  }),
+  })
 );
 
 module.exports = productionWebpackConfig;

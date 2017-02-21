@@ -125,7 +125,7 @@ const trackUser = async () => {
     () => {
       user.pageview('/').send();
     },
-    60000 * 5,
+    60000 * 5
   );
 };
 if (!isDev) trackUser();

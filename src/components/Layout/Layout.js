@@ -24,11 +24,11 @@ const Layout = (
   const onClickSettings = () => ui.changeView('settings');
   const openDonateLink = () =>
     shell.openExternal(
-      'https://github.com/lionsharecapital/lionshare-desktop#donate',
+      'https://github.com/lionsharecapital/lionshare-desktop#donate'
     );
   const openVersionLink = () =>
     shell.openExternal(
-      'https://github.com/lionsharecapital/lionshare-desktop/releases',
+      'https://github.com/lionsharecapital/lionshare-desktop/releases'
     );
 
   return (

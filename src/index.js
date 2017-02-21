@@ -19,5 +19,5 @@ render(
     </Provider>
     {false && <DevTools position={{ bottom: 0, right: 0 }} />}
   </Flex>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );

@@ -101,7 +101,7 @@ class PortfolioStore {
         data.datasets[0].data.push(this.prices.convert(amount, currency));
         data.datasets[0].backgroundColor.push(currencyData(currency).color);
         data.datasets[0].hoverBackgroundColor.push(
-          currencyData(currency).color,
+          currencyData(currency).color
         );
       });
     }
@@ -137,7 +137,7 @@ class PortfolioStore {
       this.editedBalances.forEach((amount, currency) => {
         this.rawEditedBalances.set(
           currency,
-          this.prices.convert(amount, currency),
+          this.prices.convert(amount, currency)
         );
       });
     } else {
@@ -145,7 +145,7 @@ class PortfolioStore {
       this.editedBalances.forEach((amount, currency) => {
         this.rawEditedBalances.set(
           currency,
-          amount / this.prices.convert(1.00, currency),
+          amount / this.prices.convert(1.00, currency)
         );
       });
     }
@@ -228,7 +228,7 @@ class PortfolioStore {
             formatNumber(this.totalChange, 'USD', {
               directionSymbol: true,
               minPrecision: true,
-            }),
+            })
           );
         } else {
           ipcRenderer.send('priceUpdate', '');

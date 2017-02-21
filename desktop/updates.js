@@ -3,7 +3,7 @@ import { version } from '../package.json';
 
 const scheduleUpdates = () => {
   autoUpdater.setFeedURL(
-    `https://api.lionshare.capital/api/updates?v=${version}&os=darwin`,
+    `https://api.lionshare.capital/api/updates?v=${version}&os=darwin`
   );
 
   autoUpdater.on('error', error => console.error(error));
@@ -26,13 +26,13 @@ const scheduleUpdates = () => {
     () => {
       checkForUpdates();
     },
-    60 * 60 * 1000,
+    60 * 60 * 1000
   );
   setTimeout(
     () => {
       checkForUpdates();
     },
-    10 * 1000,
+    10 * 1000
   );
 };
 

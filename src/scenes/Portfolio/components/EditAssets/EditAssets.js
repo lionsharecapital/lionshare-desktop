@@ -35,7 +35,7 @@ class EditAssets extends React.Component {
       () => {
         this.setState({ chartData: this.chartState });
       },
-      1000,
+      1000
     );
   }
 
