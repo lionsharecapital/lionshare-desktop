@@ -15,6 +15,7 @@ const Layout = ({
   children,
   footer,
   alwaysLoad,
+  activeTab,
   border = true,
 }) => {
   const onClickPrices = () => ui.changeView('prices');
@@ -32,16 +33,16 @@ const Layout = ({
         <HeaderTab
           onClick={ onClickPrices }
           label="Prices"
-          active={ ui.view === 'prices' }
+          active={ activeTab === 'prices' }
         />
         <HeaderTab
           onClick={ onClickPortfolio }
           label="Portfolio"
-          active={ ui.view === 'portfolio' }
+          active={ activeTab === 'portfolio' }
         />
         <SettingsTab
           onClick={ onClickSettings }
-          active={ ui.view === 'settings' }
+          active={ activeTab === 'settings' }
         />
       </Header>
       <Flex auto>
