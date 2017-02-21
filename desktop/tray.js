@@ -12,12 +12,12 @@ const newTray = win => {
 
   const contextMenu = electron.Menu.buildFromTemplate([
     {
-      role: 'quit'
-    }
+      role: 'quit',
+    },
   ]);
 
   tray = new electron.Tray(
-    path.join(__dirname, '../src/assets/icons/menubarTemplate.png')
+    path.join(__dirname, '../src/assets/icons/menubarTemplate.png'),
   );
   // Disabling highlight mode makes toggling more reliable ¯\_(ツ)_/¯
   // https://github.com/electron/electron/issues/1825

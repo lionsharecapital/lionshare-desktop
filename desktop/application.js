@@ -49,7 +49,7 @@ const createMainWindow = () => {
     frame: false,
     titleBarStyle: 'hidden-inset',
     autoHideMenuBar: true,
-    backgroundColor: '#000000'
+    backgroundColor: '#000000',
   });
 
   if (process.platform === 'darwin') {
@@ -59,7 +59,7 @@ const createMainWindow = () => {
   const index = url.format({
     pathname: path.join(__dirname, 'window.html'),
     protocol: 'file:',
-    slashes: true
+    slashes: true,
   });
   win.loadURL(index);
 
@@ -125,7 +125,7 @@ const trackUser = async () => {
     () => {
       user.pageview('/').send();
     },
-    60000 * 5
+    60000 * 5,
   );
 };
 if (!isDev) trackUser();

@@ -18,14 +18,14 @@ class // eslint-disable-next-line react/prefer-stateless-function
 Settings extends React.Component {
   static propTypes = {
     ui: PropTypes.object.isRequired,
-    prices: PropTypes.object.isRequired
+    prices: PropTypes.object.isRequired,
   };
 
   render() {
     const { ui } = this.props;
     const openGitHubFaq = () =>
       shell.openExternal(
-        'https://github.com/lionsharecapital/lionshare-desktop#faq'
+        'https://github.com/lionsharecapital/lionshare-desktop#faq',
       );
     const { selectPeriod, period } = this.props.prices;
     const periodDay = () => selectPeriod('day');
@@ -37,7 +37,7 @@ Settings extends React.Component {
       setDockItemVisible,
       dockItemVisible,
       setSortBy,
-      sortBy
+      sortBy,
     } = ui;
 
     return (
@@ -194,8 +194,8 @@ const Asset = observer((
     symbol,
     color,
     toggleCurrency,
-    visibleCurrencies
-  }
+    visibleCurrencies,
+  },
 ) => {
   const onChange = () => toggleCurrency(symbol);
   const checked = visibleCurrencies.includes(symbol);

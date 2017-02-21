@@ -15,9 +15,9 @@ const createMenu = (app, mainWindow) => {
         {
           label: 'Select All',
           accelerator: 'CmdOrCtrl+A',
-          selector: 'selectAll:'
-        }
-      ]
+          selector: 'selectAll:',
+        },
+      ],
     },
     {
       label: 'View',
@@ -27,14 +27,14 @@ const createMenu = (app, mainWindow) => {
           accelerator: 'CmdOrCtrl+1',
           click() {
             mainWindow.webContents.send('showPrices');
-          }
+          },
         },
         {
           label: 'Portfolio',
           accelerator: 'CmdOrCtrl+2',
           click() {
             mainWindow.webContents.send('showPortfolio');
-          }
+          },
         },
         { type: 'separator' },
         {
@@ -45,18 +45,18 @@ const createMenu = (app, mainWindow) => {
             const setting = !config.get('priceSetting');
             config.set('priceSetting', setting);
             mainWindow.webContents.send('priceSetting', setting);
-          }
+          },
         },
         { type: 'separator' },
         {
           label: 'Developer',
           submenu: [
             {
-              role: 'toggledevtools'
-            }
-          ]
-        }
-      ]
+              role: 'toggledevtools',
+            },
+          ],
+        },
+      ],
     },
     {
       role: 'window',
@@ -66,8 +66,8 @@ const createMenu = (app, mainWindow) => {
         { type: 'separator' },
         { role: 'toggledevtools' },
         { type: 'separator' },
-        { role: 'reload' }
-      ]
+        { role: 'reload' },
+      ],
     },
     {
       role: 'help',
@@ -76,22 +76,22 @@ const createMenu = (app, mainWindow) => {
           label: 'Learn More',
           click() {
             shell.openExternal('https://lionshare.capital');
-          }
+          },
         },
         {
           label: 'Donate',
           click() {
             shell.openExternal('https://lionshare.capital#donate');
-          }
+          },
         },
         {
           label: 'Twitter (@getlionshare)',
           click() {
             shell.openExternal('https://twitter.com/getlionshare');
-          }
-        }
-      ]
-    }
+          },
+        },
+      ],
+    },
   ];
 
   if (process.platform === 'darwin') {
@@ -105,32 +105,32 @@ const createMenu = (app, mainWindow) => {
           accelerator: 'Cmd+,',
           click() {
             mainWindow.webContents.send('showSettings');
-          }
+          },
         },
         { type: 'separator' },
         {
           role: 'services',
-          submenu: []
+          submenu: [],
         },
         { type: 'separator' },
         { role: 'hide' },
         { role: 'hideothers' },
         { role: 'unhide' },
         { type: 'separator' },
-        { role: 'quit' }
-      ]
+        { role: 'quit' },
+      ],
     });
     // Window menu.
     template[3].submenu = [
       {
         label: 'Close',
         accelerator: 'CmdOrCtrl+W',
-        role: 'close'
+        role: 'close',
       },
       {
         label: 'Minimize',
         accelerator: 'CmdOrCtrl+M',
-        role: 'minimize'
+        role: 'minimize',
       },
       { type: 'separator' },
       { role: 'reload' },
@@ -138,8 +138,8 @@ const createMenu = (app, mainWindow) => {
       { type: 'separator' },
       {
         label: 'Bring All to Front',
-        role: 'front'
-      }
+        role: 'front',
+      },
     ];
   }
 

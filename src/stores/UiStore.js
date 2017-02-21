@@ -75,7 +75,7 @@ export default class Ui {
       visibleCurrencies: this.visibleCurrencies,
       sortBy: this.sortBy,
       launchOnStartup: this.launchOnStartup,
-      dockItemVisible: this.dockItemVisible
+      dockItemVisible: this.dockItemVisible,
     };
   };
 

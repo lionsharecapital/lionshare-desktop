@@ -11,7 +11,7 @@ const ColoredChange = ({ children, direction }) => (
 
 ColoredChange.propTypes = {
   children: PropTypes.node.isRequired,
-  direction: PropTypes.string.isRequired
+  direction: PropTypes.string.isRequired,
 };
 
 export default ColoredChange;

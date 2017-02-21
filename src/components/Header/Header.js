@@ -18,11 +18,11 @@ const Header = props => (
 
 Header.propTypes = {
   children: PropTypes.node.isRequired,
-  border: PropTypes.bool
+  border: PropTypes.bool,
 };
 
 Header.defaultProps = {
-  border: true
+  border: true,
 };
 
 export default Header;

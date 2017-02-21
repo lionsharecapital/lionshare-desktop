@@ -33,8 +33,8 @@ const AssetRow = (
     color,
     balance,
     nativeBalance,
-    change
-  }
+    change,
+  },
 ) => {
   const direction = change >= 0 ? 'up' : 'down';
 
@@ -59,7 +59,7 @@ const AssetRow = (
           <ColoredChange direction={direction}>
             {formatNumber(change, 'USD', {
               directionSymbol: true,
-              minPrecision: true
+              minPrecision: true,
             })}
           </ColoredChange>
         </Flex>

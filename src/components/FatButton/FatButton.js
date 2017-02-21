@@ -9,7 +9,7 @@ export default class FatButton extends React.Component {
   static propTypes = {
     label: React.PropTypes.string.isRequired,
     active: React.PropTypes.bool.isRequired,
-    onClick: React.PropTypes.func.isRequired
+    onClick: React.PropTypes.func.isRequired,
   };
 
   onClick = event => {

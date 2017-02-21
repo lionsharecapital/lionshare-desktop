@@ -37,7 +37,7 @@ const ErrorMessage = ({ message, onRetry }) => (
 
 ErrorMessage.propTypes = {
   message: PropTypes.string.isRequired,
-  onRetry: PropTypes.func.isRequired
+  onRetry: PropTypes.func.isRequired,
 };
 
 export default observer(ErrorMessage);

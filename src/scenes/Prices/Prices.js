@@ -9,17 +9,17 @@ import PriceList from './components/PriceList';
 class Prices extends React.Component {
   static propTypes = {
     prices: PropTypes.object.isRequired,
-    ui: PropTypes.object.isRequired
+    ui: PropTypes.object.isRequired,
   };
 
   render() {
     const {
       isLoaded,
-      priceListData
+      priceListData,
     } = this.props.prices;
     const {
       visibleCurrencies,
-      sortBy
+      sortBy,
     } = this.props.ui;
 
     return (

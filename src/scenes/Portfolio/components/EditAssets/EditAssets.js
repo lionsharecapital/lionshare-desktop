@@ -23,11 +23,11 @@ class EditAssets extends React.Component {
     toggleEditMode: PropTypes.func.isRequired,
     fiatCurrency: PropTypes.string.isRequired,
     toggleOnboarding: PropTypes.func.isRequired,
-    showOnboarding: PropTypes.bool.isRequired
+    showOnboarding: PropTypes.bool.isRequired,
   };
 
   state = {
-    chartData: this.chartState
+    chartData: this.chartState,
   };
 
   componentDidMount() {
@@ -35,7 +35,7 @@ class EditAssets extends React.Component {
       () => {
         this.setState({ chartData: this.chartState });
       },
-      1000
+      1000,
     );
   }
 
@@ -57,22 +57,22 @@ class EditAssets extends React.Component {
             getRandomInt(50, 200),
             getRandomInt(100, 150),
             getRandomInt(100, 250),
-            getRandomInt(50, 200)
+            getRandomInt(50, 200),
           ],
           backgroundColor: [
             CURRENCIES[0].color,
             CURRENCIES[1].color,
             CURRENCIES[3].color,
-            CURRENCIES[5].color
-          ]
-        }
-      ]
+            CURRENCIES[5].color,
+          ],
+        },
+      ],
     };
   }
 
   get currencies() {
     const {
-      visibleCurrencies
+      visibleCurrencies,
     } = this.props;
     return CURRENCIES.filter(currency =>
       visibleCurrencies.includes(currency.symbol));
@@ -87,7 +87,7 @@ class EditAssets extends React.Component {
       toggleEditMode,
       fiatCurrency,
       toggleOnboarding,
-      showOnboarding
+      showOnboarding,
     } = this.props;
 
     const balanceLabel = editMode === 'fiat' ? 'Hide USD' : 'Show USD';
@@ -95,9 +95,9 @@ class EditAssets extends React.Component {
     const chartOptions = {
       cutoutPercentage: 0,
       tooltips: {
-        enabled: false
+        enabled: false,
       },
-      borderWidth: 0
+      borderWidth: 0,
     };
 
     return (
@@ -183,7 +183,7 @@ class EditRow extends React.Component {
       onChange,
       value,
       editMode,
-      fiatCurrency
+      fiatCurrency,
     } = this.props;
 
     const refInput = input => {
@@ -237,10 +237,10 @@ EditRow.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: React.PropTypes.oneOfType([
     React.PropTypes.string,
-    React.PropTypes.number
+    React.PropTypes.number,
   ]),
   editMode: PropTypes.string.isRequired,
-  fiatCurrency: PropTypes.string.isRequired
+  fiatCurrency: PropTypes.string.isRequired,
 };
 
 export default observer(EditAssets);

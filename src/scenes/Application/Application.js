@@ -12,7 +12,7 @@ import Settings from 'scenes/Settings';
 @observer
 class Application extends React.Component {
   static propTypes = {
-    ui: PropTypes.object.isRequired
+    ui: PropTypes.object.isRequired,
   };
 
   renderView = () => {

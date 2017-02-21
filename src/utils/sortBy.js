@@ -2,7 +2,7 @@ import _sortBy from 'lodash/sortBy';
 
 export const SORT_TYPES = {
   marketCap: 'marketCap',
-  change: 'change'
+  change: 'change',
 };
 
 export function sortByType(priceList, sortBy) {

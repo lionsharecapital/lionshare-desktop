@@ -4,13 +4,13 @@ const formatNumber = (amount, currency, options = {}) => {
   if (!(options.maximumFractionDigits || options.maximumFractionDigits === 0)) {
     options.maximumFractionDigits = Math.max(
       0,
-      7 - parseInt(amount, 10).toString().length
+      7 - parseInt(amount, 10).toString().length,
     );
   }
 
   let value = new Intl.NumberFormat(navigator.language, {
     style: 'decimal',
-    ...options
+    ...options,
   }).format(Math.abs(amount));
 
   if (currency) {

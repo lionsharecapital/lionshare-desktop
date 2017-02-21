@@ -13,7 +13,7 @@
     "dev": "concurrently -k 'node desktop/server.dev.js' 'npm start'",
     "lint": "eslint 'src/**/*.js' --quiet",
     "lint:staged": "lint-staged",
-    "prettier": "prettier 'src/**/*.js' 'desktop/**/*.js' --write --single-quote"
+    "prettier": "prettier 'src/**/*.js' 'desktop/**/*.js' --write --single-quote --trailing-comma es5"
   },
   "pre-commit": "lint:staged",
   "lint-staged": {

@@ -14,7 +14,7 @@ var definePlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
   __TEST__: JSON.stringify(process.env.NODE_ENV === 'test'),
   API_URL: JSON.stringify(API_URL),
-  WS_URL: JSON.stringify(WS_URL)
+  WS_URL: JSON.stringify(WS_URL),
 });
 
 var config = {
@@ -22,7 +22,7 @@ var config = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/static/'
+    publicPath: '/static/',
   },
   target: 'electron',
   module: {
@@ -30,33 +30,33 @@ var config = {
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       { test: /\.json$/, loader: 'json-loader' },
       {
         test: /\.css$/,
-        loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+        loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
       },
       {
         test: /\.scss$/,
-        loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!resolve-url!sass?outputStyle=expanded'
+        loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!resolve-url!sass?outputStyle=expanded',
       },
       {
         test: /\.otf$/,
-        loader: 'url-loader?mimetype=application/font-woff&name=public/fonts/[name].[ext]'
-      }
-    ]
+        loader: 'url-loader?mimetype=application/font-woff&name=public/fonts/[name].[ext]',
+      },
+    ],
   },
   resolve: {
     // you can now require('file') instead of require('file.json')
     extensions: ['', '.js', '.json'],
-    root: path.resolve(__dirname, '../../src')
+    root: path.resolve(__dirname, '../../src'),
   },
   plugins: [definePlugin],
   constants: {
     API_URL: API_URL,
-    WS_URL: WS_URL
-  }
+    WS_URL: WS_URL,
+  },
 };
 
 module.exports = config;

@@ -23,11 +23,11 @@ const SettingsTab = ({ onClick, active }) => (
 
 SettingsTab.propTypes = {
   onClick: PropTypes.func.isRequired,
-  active: PropTypes.bool
+  active: PropTypes.bool,
 };
 
 SettingsTab.defaultProps = {
-  active: false
+  active: false,
 };
 
 export default SettingsTab;

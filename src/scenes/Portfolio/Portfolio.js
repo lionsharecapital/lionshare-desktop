@@ -24,14 +24,14 @@ class Portfolio extends React.Component {
   static propTypes = {
     prices: PropTypes.object.isRequired,
     ui: PropTypes.object.isRequired,
-    balances: PropTypes.object
+    balances: PropTypes.object,
   };
 
   constructor(props) {
     super(props);
     this.store = new PortfolioStore({
       prices: props.prices,
-      ui: props.ui
+      ui: props.ui,
     });
   }
 
@@ -39,9 +39,9 @@ class Portfolio extends React.Component {
     return {
       cutoutPercentage: 95,
       tooltips: {
-        enabled: false
+        enabled: false,
       },
-      animation: false
+      animation: false,
     };
   }
 
@@ -86,7 +86,7 @@ class Portfolio extends React.Component {
                   >
                     <ChangeHighlight trigger={this.store.totalBalance}>
                       {formatNumber(this.store.totalBalance, 'USD', {
-                        maximumFractionDigits: 0
+                        maximumFractionDigits: 0,
                       })}
                     </ChangeHighlight>
                   </div>
@@ -94,7 +94,7 @@ class Portfolio extends React.Component {
                     <ColoredChange direction={direction}>
                       {formatNumber(this.store.totalChange, 'USD', {
                         directionSymbol: true,
-                        minPrecision: true
+                        minPrecision: true,
                       })}
                     </ColoredChange>
                   </div>

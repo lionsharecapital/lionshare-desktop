@@ -11,8 +11,8 @@ var app = express();
 app.use(
   webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath,
-    stats: { colors: true }
-  })
+    stats: { colors: true },
+  }),
 );
 
 app.listen(3000, function() {

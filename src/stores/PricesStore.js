@@ -62,13 +62,13 @@ export default class PricesStore {
               {
                 radius: 0,
                 borderColor: color,
-                data: historic
-              }
-            ]
+                data: historic,
+              },
+            ],
           },
           highestPrice: this.highestPrice(key),
           lowestPrice: this.lowestPrice(key),
-          marketCap: this.marketCap(key)
+          marketCap: this.marketCap(key),
         });
       });
     }
@@ -81,7 +81,7 @@ export default class PricesStore {
   @action fetchData = async () => {
     try {
       const rateRes = await fetch(
-        `${API_URL}/api/prices?period=${this.period}`
+        `${API_URL}/api/prices?period=${this.period}`,
       );
       const rateData = await rateRes.json();
       this.rateData = rateData.data;
@@ -101,7 +101,7 @@ export default class PricesStore {
         () => {
           this.fetchData();
         },
-        2000
+        2000,
       );
     }
   };
@@ -139,7 +139,7 @@ export default class PricesStore {
   toJSON = () => JSON.stringify({
     rateData: this.rateData,
     marketData: this.marketData,
-    period: this.period
+    period: this.period,
   });
 
   highestPrice = currency => {
@@ -196,7 +196,7 @@ export default class PricesStore {
       () => {
         this.fetchData();
       },
-      interval
+      interval,
     );
   }
 }

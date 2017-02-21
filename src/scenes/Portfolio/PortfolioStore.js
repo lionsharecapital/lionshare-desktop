@@ -72,7 +72,7 @@ class PortfolioStore {
         ...currencyData(currency), // Generic currency data (name, symbol, color)
         balance,
         nativeBalance,
-        change
+        change,
       };
     });
   }
@@ -92,16 +92,16 @@ class PortfolioStore {
           borderWidth: 0,
           data: [0.01],
           backgroundColor: ['rgba(255, 255, 255, 0.20)'],
-          hoverBackgroundColor: ['rgba(255, 255, 255, 0.20)']
-        }
-      ]
+          hoverBackgroundColor: ['rgba(255, 255, 255, 0.20)'],
+        },
+      ],
     };
     if (this.userDataReady || this.isEditing) {
       this.activeBalances.forEach((amount, currency) => {
         data.datasets[0].data.push(this.prices.convert(amount, currency));
         data.datasets[0].backgroundColor.push(currencyData(currency).color);
         data.datasets[0].hoverBackgroundColor.push(
-          currencyData(currency).color
+          currencyData(currency).color,
         );
       });
     }
@@ -137,7 +137,7 @@ class PortfolioStore {
       this.editedBalances.forEach((amount, currency) => {
         this.rawEditedBalances.set(
           currency,
-          this.prices.convert(amount, currency)
+          this.prices.convert(amount, currency),
         );
       });
     } else {
@@ -145,7 +145,7 @@ class PortfolioStore {
       this.editedBalances.forEach((amount, currency) => {
         this.rawEditedBalances.set(
           currency,
-          amount / this.prices.convert(1.00, currency)
+          amount / this.prices.convert(1.00, currency),
         );
       });
     }
@@ -200,7 +200,7 @@ class PortfolioStore {
   /* other */
 
   toJSON = () => JSON.stringify({
-    balances: this.balances
+    balances: this.balances,
   });
 
   constructor(options) {
@@ -227,8 +227,8 @@ class PortfolioStore {
             'priceUpdate',
             formatNumber(this.totalChange, 'USD', {
               directionSymbol: true,
-              minPrecision: true
-            })
+              minPrecision: true,
+            }),
           );
         } else {
           ipcRenderer.send('priceUpdate', '');
@@ -240,7 +240,7 @@ class PortfolioStore {
       // Taskbar change updates
       const trayChange = formatNumber(this.totalChange, 'USD', {
         directionSymbol: true,
-        minPrecision: true
+        minPrecision: true,
       });
       ipcRenderer.send('priceUpdate', trayChange);
     });

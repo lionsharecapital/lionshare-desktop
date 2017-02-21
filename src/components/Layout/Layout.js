@@ -16,19 +16,19 @@ const Layout = (
     children,
     footer,
     alwaysLoad,
-    border = true
-  }
+    border = true,
+  },
 ) => {
   const onClickPrices = () => ui.changeView('prices');
   const onClickPortfolio = () => ui.changeView('portfolio');
   const onClickSettings = () => ui.changeView('settings');
   const openDonateLink = () =>
     shell.openExternal(
-      'https://github.com/lionsharecapital/lionshare-desktop#donate'
+      'https://github.com/lionsharecapital/lionshare-desktop#donate',
     );
   const openVersionLink = () =>
     shell.openExternal(
-      'https://github.com/lionsharecapital/lionshare-desktop/releases'
+      'https://github.com/lionsharecapital/lionshare-desktop/releases',
     );
 
   return (
@@ -83,7 +83,7 @@ Layout.propTypes = {
   border: React.PropTypes.bool,
   footer: React.PropTypes.bool,
   alwaysLoad: React.PropTypes.bool,
-  title: React.PropTypes.string
+  title: React.PropTypes.string,
 };
 
 export default inject('ui', 'prices')(observer(Layout));

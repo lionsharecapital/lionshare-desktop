@@ -4,7 +4,7 @@ import AutoLaunch from 'auto-launch';
 const setup = app => {
   const autoLauncher = new AutoLaunch({
     name: app.getName(),
-    isHidden: true
+    isHidden: true,
   });
 
   ipcMain.on('settingsUpdated', (_event, settings) => {

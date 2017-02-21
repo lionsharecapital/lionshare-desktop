@@ -12,5 +12,5 @@ ipcRenderer.on('showPortfolio', () => ui.changeView('portfolio'));
 
 export default {
   ui,
-  prices
+  prices,
 };

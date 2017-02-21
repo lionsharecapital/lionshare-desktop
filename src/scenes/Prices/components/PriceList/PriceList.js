@@ -36,30 +36,30 @@ const AssetRow = (
     chartData,
     highestPrice,
     lowestPrice,
-    marketCap
-  }
+    marketCap,
+  },
 ) => {
   const direction = change >= 0 ? 'up' : 'down';
   const chartOptions = {
     animation: false,
     legend: {
-      display: false
+      display: false,
     },
     tooltips: {
-      enabled: false
+      enabled: false,
     },
     scales: {
       xAxes: [
         {
-          display: false
-        }
+          display: false,
+        },
       ],
       yAxes: [
         {
-          display: false
-        }
-      ]
-    }
+          display: false,
+        },
+      ],
+    },
   };
 
   return (
@@ -79,7 +79,7 @@ const AssetRow = (
             <ColoredChange direction={direction}>
               {formatNumber(change, undefined, {
                 directionSymbol: true,
-                minPrecision: true
+                minPrecision: true,
               })}%
             </ColoredChange>
           </div>

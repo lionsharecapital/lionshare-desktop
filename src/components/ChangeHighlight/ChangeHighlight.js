@@ -10,13 +10,13 @@ class ChangeHighlight extends React.Component {
     children: PropTypes.node.isRequired,
     trigger: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.number
-    ]).isRequired
+      PropTypes.number,
+    ]).isRequired,
   };
 
   state = {
     highlight: false,
-    direction: null
+    direction: null,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -26,7 +26,7 @@ class ChangeHighlight extends React.Component {
         direction: parseFloat(nextProps.trigger) >
           parseFloat(this.props.trigger)
           ? 'up'
-          : 'down'
+          : 'down',
       });
       setTimeout(() => this.setState({ highlight: false }), 2500);
     }
@@ -34,11 +34,11 @@ class ChangeHighlight extends React.Component {
 
   render() {
     const {
-      children
+      children,
     } = this.props;
     const {
       highlight,
-      direction
+      direction,
     } = this.state;
 
     return (

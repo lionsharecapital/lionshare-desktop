@@ -8,31 +8,31 @@ const productionWebpackConfig = Object.assign(commonWebpackConfig, {
   devtool: 'cheap-module-source-map',
   context: path.join(__dirname, '../../src'),
   entry: {
-    bundle: ['babel-polyfill', './index']
+    bundle: ['babel-polyfill', './index'],
   },
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: '[name].js'
-  }
+    filename: '[name].js',
+  },
 });
 
 productionWebpackConfig.plugins.push(
-  new webpack.optimize.OccurenceOrderPlugin()
+  new webpack.optimize.OccurenceOrderPlugin(),
 );
 productionWebpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
 productionWebpackConfig.plugins.push(
   new webpack.optimize.UglifyJsPlugin({
     compress: {
-      warnings: false
-    }
-  })
+      warnings: false,
+    },
+  }),
 );
 productionWebpackConfig.plugins.push(
   new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: JSON.stringify('production')
-    }
-  })
+      NODE_ENV: JSON.stringify('production'),
+    },
+  }),
 );
 
 module.exports = productionWebpackConfig;
