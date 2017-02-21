@@ -9,13 +9,13 @@ import PriceList from './components/PriceList';
 class Prices extends React.Component {
   static propTypes = {
     prices: PropTypes.object.isRequired,
-    ui: PropTypes.object.isRequired,
-  }
+    ui: PropTypes.object.isRequired
+  };
 
   render() {
     const {
       isLoaded,
-      priceListData,
+      priceListData
     } = this.props.prices;
     const {
       visibleCurrencies,
@@ -23,17 +23,13 @@ class Prices extends React.Component {
     } = this.props.ui;
 
     return (
-      <Layout
-        title={ 'Prices' }
-        activeTab="prices"
-      >
-        { isLoaded && (
+      <Layout title={'Prices'} activeTab="prices">
+        {isLoaded &&
           <PriceList
-            assets={ priceListData }
-            visibleCurrencies={ visibleCurrencies }
-            sortBy={ sortBy }
-          />
-        ) }
+            assets={priceListData}
+            visibleCurrencies={visibleCurrencies}
+            sortBy={sortBy}
+          />}
       </Layout>
     );
   }

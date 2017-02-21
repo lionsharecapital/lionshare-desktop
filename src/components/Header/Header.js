@@ -1,23 +1,28 @@
 import React, { PropTypes } from 'react';
 import { Flex } from 'reflexbox';
+import classNames from 'classnames/bind';
 
 import styles from './Header.scss';
-import classNames from 'classnames/bind';
+
 const cx = classNames.bind(styles);
 
-const Header = (props) => (
+const Header = props => (
   <Flex
     align="center"
     justify="center"
-    className={ cx(styles.header, { border: props.border }) }
+    className={cx(styles.header, { border: props.border })}
   >
-    { props.children }
+    {props.children}
   </Flex>
 );
 
 Header.propTypes = {
-  children: PropTypes.node,
-  border: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  border: PropTypes.bool
+};
+
+Header.defaultProps = {
+  border: true
 };
 
 export default Header;

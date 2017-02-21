@@ -8,10 +8,12 @@ var compiler = webpack(config);
 
 var app = express();
 
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: config.output.publicPath,
-  stats: { colors: true },
-}));
+app.use(
+  webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+    stats: { colors: true }
+  })
+);
 
 app.listen(3000, function() {
   console.log('listening on 3000');
