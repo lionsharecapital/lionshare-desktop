@@ -6,12 +6,14 @@ import { SORT_TYPES } from 'utils/sortBy';
 const UI_STORE_KEY = 'UI_STORE_KEY';
 const AVAILABLE_VIEWS = [
   'prices',
+  'currency',
   'portfolio',
   'settings',
 ];
 
 export default class Ui {
   @observable view = AVAILABLE_VIEWS[0];
+  @observable viewCurrency;
   @observable visibleCurrencies = CURRENCIES.map(currency => currency.symbol);
   @observable sortBy = SORT_TYPES.marketCap;
   @observable dockItemVisible = true;
@@ -46,6 +48,11 @@ export default class Ui {
     this.visibleCurrencies = [];
   }
 
+  @action openCurrency = (currency) => {
+    this.viewCurrency = currency;
+    this.changeView('currency');
+  }
+
   @action setLaunchOnStartup = (launchOnStartup) => {
     this.launchOnStartup = launchOnStartup;
   }
@@ -57,6 +64,7 @@ export default class Ui {
   @action fromJSON = (jsonData) => {
     const parsed = JSON.parse(jsonData);
     this.view = parsed.view;
+    this.viewCurrency = parsed.viewCurrency;
     this.visibleCurrencies.replace(parsed.visibleCurrencies);
 
     const setIfDefined = (key) => {
@@ -75,6 +83,7 @@ export default class Ui {
   toObject = () => {
     return {
       view: this.view,
+      viewCurrency: this.viewCurrency,
       visibleCurrencies: this.visibleCurrencies,
       sortBy: this.sortBy,
       launchOnStartup: this.launchOnStartup,

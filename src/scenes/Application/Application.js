@@ -5,6 +5,7 @@ import { Flex } from 'reflexbox';
 import 'styles/base.scss';
 
 import Prices from 'scenes/Prices';
+import Currency from 'scenes/Currency';
 import Portfolio from 'scenes/Portfolio';
 import Settings from 'scenes/Settings';
 
@@ -19,6 +20,8 @@ class Application extends React.Component {
     switch (this.props.ui.view) {
       case 'prices':
         return <Prices />;
+      case 'currency':
+        return <Currency />;
       case 'portfolio':
         return <Portfolio />;
       case 'settings':

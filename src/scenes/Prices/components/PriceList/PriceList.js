@@ -15,7 +15,7 @@ import classNames from 'classnames/bind';
 import styles from './PriceList.scss';
 const cx = classNames.bind(styles);
 
-const PriceList = ({ assets, visibleCurrencies, sortBy }) => {
+const PriceList = ({ assets, visibleCurrencies, sortBy, openCurrency }) => {
   const includedAssets = assets.filter(asset => visibleCurrencies.includes(asset.symbol));
   const sorted = sortByType(includedAssets, sortBy);
 
@@ -24,6 +24,7 @@ const PriceList = ({ assets, visibleCurrencies, sortBy }) => {
       { sorted.map(asset => (
         <AssetRow
           key={ asset.symbol }
+          openCurrency={ openCurrency }
           { ...asset }
         />
       )) }
@@ -36,12 +37,13 @@ const AssetRow = ({
   color,
   price,
   change,
+  direction,
   chartData,
   highestPrice,
   lowestPrice,
   marketCap,
+  openCurrency,
 }) => {
-  const direction = change >= 0 ? 'up' : 'down';
   const chartOptions = {
     animation: false,
     legend: {
@@ -59,12 +61,15 @@ const AssetRow = ({
       }],
     },
   };
+  const onClick = () => openCurrency(symbol);
 
   return (
     <Flex
       align="center"
       justify="space-between"
       className={ styles.row }
+      role="button"
+      onClick={ onClick }
     >
       <Flex className={ styles.rowLeft }>
         <CurrencyColor color={ color } className={ styles.colorDot } />
