@@ -171,7 +171,8 @@ export default class PricesStore {
   };
 
   change = (amount, currency) => {
-    return this.convert(amount, currency) * this.changes[currency];
+    let change = this.changes[currency];
+    return this.convert(amount, currency) * change / (1 + change);
   };
 
   constructor() {
