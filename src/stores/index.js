@@ -2,8 +2,8 @@ import { ipcRenderer } from 'electron';
 import UiStore from './UiStore';
 import PricesStore from './PricesStore';
 
-const ui = new UiStore();
 const prices = new PricesStore();
+const ui = new UiStore({ prices });
 
 // Open views from application menu (/desktop/menu.js)
 ipcRenderer.on('showSettings', () => ui.changeView('settings'));

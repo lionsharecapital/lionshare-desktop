@@ -2,7 +2,6 @@ import { observable, computed, action, asMap, autorun } from 'mobx';
 import { ipcRenderer } from 'electron';
 import EventEmitter from 'events';
 
-import { currencyData } from 'utils/currencies';
 import { formatNumber } from 'utils/formatting';
 
 const PORTFOLIO_KEY = 'PORTFOLIO_KEY';
@@ -69,7 +68,7 @@ class PortfolioStore {
       const change = this.prices.change(balance, currency);
 
       return {
-        ...currencyData(currency), // Generic currency data (name, symbol, color)
+        ...this.prices.assetData[currency], // Generic currency data (name, symbol, color)
         balance,
         nativeBalance,
         change,
@@ -99,9 +98,11 @@ class PortfolioStore {
     if (this.userDataReady || this.isEditing) {
       this.activeBalances.forEach((amount, currency) => {
         data.datasets[0].data.push(this.prices.convert(amount, currency));
-        data.datasets[0].backgroundColor.push(currencyData(currency).color);
+        data.datasets[0].backgroundColor.push(
+          this.prices.assetData[currency].color
+        );
         data.datasets[0].hoverBackgroundColor.push(
-          currencyData(currency).color
+          this.prices.assetData[currency].color
         );
       });
     }
