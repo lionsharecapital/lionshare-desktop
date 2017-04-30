@@ -4,8 +4,6 @@ import { observer } from 'mobx-react';
 import { formatNumber } from 'utils/formatting';
 import { Pie } from 'react-chartjs-2';
 
-import { CURRENCIES } from 'utils/currencies';
-
 import CurrencyColor from 'components/CurrencyColor';
 
 import styles from './EditAssets.scss';
@@ -19,6 +17,7 @@ class EditAssets extends React.Component {
     balances: PropTypes.object.isRequired,
     totalBalance: PropTypes.number.isRequired,
     visibleCurrencies: PropTypes.object.isRequired,
+    assets: PropTypes.object.isRequired,
     editMode: PropTypes.string,
     toggleEditMode: PropTypes.func.isRequired,
     fiatCurrency: PropTypes.string.isRequired,
@@ -59,12 +58,7 @@ class EditAssets extends React.Component {
             getRandomInt(100, 250),
             getRandomInt(50, 200),
           ],
-          backgroundColor: [
-            CURRENCIES[0].color,
-            CURRENCIES[1].color,
-            CURRENCIES[3].color,
-            CURRENCIES[5].color,
-          ],
+          backgroundColor: ['#FF7300', '#8C01FF', '#EC3766', '#38E6B2'],
         },
       ],
     };
@@ -73,9 +67,15 @@ class EditAssets extends React.Component {
   get currencies() {
     const {
       visibleCurrencies,
+      assets,
     } = this.props;
-    return CURRENCIES.filter(currency =>
-      visibleCurrencies.includes(currency.symbol));
+    const filteredAssets = [];
+    for (let symbol in assets) {
+      if (visibleCurrencies.includes(symbol)) {
+        filteredAssets.push(assets[symbol]);
+      }
+    }
+    return filteredAssets;
   }
 
   render() {

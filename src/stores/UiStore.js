@@ -1,6 +1,5 @@
 import { ipcRenderer } from 'electron';
-import { observable, action, autorun } from 'mobx';
-import { CURRENCIES } from 'utils/currencies';
+import { observable, action, autorun, computed } from 'mobx';
 import { SORT_TYPES } from 'utils/sortBy';
 
 const UI_STORE_KEY = 'UI_STORE_KEY';
@@ -8,10 +7,16 @@ const AVAILABLE_VIEWS = ['prices', 'portfolio', 'settings'];
 
 export default class Ui {
   @observable view = AVAILABLE_VIEWS[0];
-  @observable visibleCurrencies = CURRENCIES.map(currency => currency.symbol);
+  @observable visibleCurrencies = [];
   @observable sortBy = SORT_TYPES.marketCap;
   @observable dockItemVisible = true;
   @observable launchOnStartup = false;
+
+  /* computed */
+
+  @computed get assets() {
+    return Object.values(this.prices.assetData);
+  }
 
   /* actions */
 
@@ -35,7 +40,7 @@ export default class Ui {
 
   @action toggleCurrenciesAll = () => {
     this.toggleCurrenciesNone(); // Clear first
-    CURRENCIES.forEach(currency =>
+    this.assets.forEach(currency =>
       this.visibleCurrencies.push(currency.symbol));
   };
 
@@ -81,7 +86,9 @@ export default class Ui {
 
   toJSON = () => JSON.stringify(this.toObject());
 
-  constructor() {
+  constructor(options) {
+    this.prices = options.prices;
+    this.visibleCurrencies = this.assets.map(currency => currency.symbol);
     // Rehydrate store from persisted data
     const data = localStorage.getItem(UI_STORE_KEY);
     if (data) this.fromJSON(data);

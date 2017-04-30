@@ -4,7 +4,6 @@ import { observer } from 'mobx-react';
 import _ from 'lodash';
 
 import { formatNumber } from 'utils/formatting';
-import { CURRENCIES } from 'utils/currencies';
 
 import CurrencyColor from 'components/CurrencyColor';
 import ChangeHighlight from 'components/ChangeHighlight';
@@ -13,10 +12,9 @@ import ColoredChange from 'components/ColoredChange';
 import styles from './AssetList.scss';
 
 const AssetList = ({ assets }) => {
-  // Order assets based on the "official order"
+  // Order assets by native balance
   const sortedAssets = _.sortBy(assets, asset => {
-    const assetList = CURRENCIES.map(currency => currency.symbol);
-    return assetList.indexOf(asset.symbol);
+    return -asset.nativeBalance;
   });
 
   return (

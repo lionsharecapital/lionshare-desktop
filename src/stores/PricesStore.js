@@ -2,13 +2,10 @@ import _ from 'lodash';
 import { observable, computed, action, autorun } from 'mobx';
 import ReconnectingWebsocket from 'reconnecting-websocket';
 
-import { currencyColors } from 'utils/currencies';
-
 const PRICES_STORE_KEY = 'PRICES_STORE_KEY';
 
 export default class PricesStore {
-  @observable rateData = {};
-  @observable marketData = {};
+  @observable assetData = {};
   @observable period = 'day';
   @observable isLoaded = false;
   @observable error = null;
@@ -19,8 +16,8 @@ export default class PricesStore {
     let data;
     if (this.isLoaded) {
       data = {};
-      _.map(this.rateData, (value, key) => {
-        data[key] = value.slice(-1)[0];
+      _.map(this.assetData, (value, key) => {
+        data[key] = value['price'].slice(-1)[0];
       });
     }
     return data;
@@ -30,8 +27,9 @@ export default class PricesStore {
     let data;
     if (this.isLoaded) {
       data = {};
-      _.map(this.rateData, (value, key) => {
-        const change = (value.slice(-1)[0] - value[0]) / value[0];
+      _.map(this.assetData, (value, key) => {
+        const price = value['price'];
+        const change = (price.slice(-1)[0] - price[0]) / price[0];
         data[key] = change;
       });
     }
@@ -42,33 +40,30 @@ export default class PricesStore {
     let data;
     if (this.isLoaded) {
       data = [];
-      _.map(this.rateData, (value, key) => {
-        const color = currencyColors[key];
+      _.map(this.assetData, (asset, key) => {
         const labels = [];
         const historic = [];
-        value.forEach(rate => {
+        asset['price'].forEach(rate => {
           historic.push(parseFloat(rate));
           labels.push('');
         });
 
         data.push({
-          color,
-          symbol: key,
-          price: this.rates[key],
+          ...asset,
+          price: asset['price'].slice(-1)[0],
           change: this.changes[key] * 100,
           chartData: {
             labels,
             datasets: [
               {
                 radius: 0,
-                borderColor: color,
+                borderColor: asset['color'],
                 data: historic,
               },
             ],
           },
           highestPrice: this.highestPrice(key),
           lowestPrice: this.lowestPrice(key),
-          marketCap: this.marketCap(key),
         });
       });
     }
@@ -80,19 +75,16 @@ export default class PricesStore {
 
   @action fetchData = async () => {
     try {
-      const rateRes = await fetch(
-        `${API_URL}/api/prices?period=${this.period}`
+      const assetRes = await fetch(
+        `${API_URL}/api/assets?period=${this.period}`
       );
-      const rateData = await rateRes.json();
-      this.rateData = rateData.data;
-
-      const marketRes = await fetch(`${API_URL}/api/markets`);
-      const marketData = await marketRes.json();
-      this.marketData = marketData.data;
+      const assetData = await assetRes.json();
+      this.assetData = assetData.data;
 
       this.isLoaded = true;
       this.error = null;
     } catch (_e) {
+      throw _e;
       if (!this.isLoaded) {
         // Only show the error if the first load fails
         this.error = 'Error loading content, please check your connection and try again.';
@@ -111,8 +103,8 @@ export default class PricesStore {
     const cryptoCurrency = data.cryptoCurrency;
     const price = parseFloat(data.price);
     if (this.isLoaded) {
-      const index = this.rateData[cryptoCurrency].length - 1;
-      this.rateData[cryptoCurrency][index] = price;
+      const index = this.assetData[cryptoCurrency]['price'].length - 1;
+      this.assetData[cryptoCurrency]['price'][index] = price;
     }
   };
 
@@ -128,8 +120,7 @@ export default class PricesStore {
 
   @action fromJSON = jsonData => {
     const parsed = JSON.parse(jsonData);
-    this.rateData = parsed.rateData;
-    this.marketData = parsed.marketData;
+    this.assetData = parsed.assetData;
     if (parsed.period) this.period = parsed.period;
     this.isLoaded = true;
   };
@@ -137,15 +128,14 @@ export default class PricesStore {
   /* other */
 
   toJSON = () => JSON.stringify({
-    rateData: this.rateData,
-    marketData: this.marketData,
+    assetData: this.assetData,
     period: this.period,
   });
 
   highestPrice = currency => {
     let highestPrice = 0.0;
     if (this.isLoaded) {
-      highestPrice = Math.max(...this.rateData[currency]);
+      highestPrice = Math.max(...this.assetData[currency]['price']);
     }
     return highestPrice;
   };
@@ -153,17 +143,9 @@ export default class PricesStore {
   lowestPrice = currency => {
     const lowestPrice = 0.0;
     if (this.isLoaded) {
-      return Math.min(...this.rateData[currency]);
+      return Math.min(...this.assetData[currency]['price']);
     }
     return lowestPrice;
-  };
-
-  marketCap = currency => {
-    const marketCap = 0.0;
-    if (this.isLoaded) {
-      return this.marketData[currency];
-    }
-    return marketCap;
   };
 
   convert = (amount, currency) => {
@@ -171,7 +153,8 @@ export default class PricesStore {
   };
 
   change = (amount, currency) => {
-    return this.convert(amount, currency) * this.changes[currency];
+    let change = this.changes[currency];
+    return this.convert(amount, currency) * change / (1 + change);
   };
 
   constructor() {

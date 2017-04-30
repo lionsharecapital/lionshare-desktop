@@ -3,7 +3,6 @@ import { observer, inject } from 'mobx-react';
 import { Flex } from 'reflexbox';
 import { shell } from 'electron';
 
-import { CURRENCIES } from 'utils/currencies';
 import { SORT_TYPES } from 'utils/sortBy';
 
 import Layout from 'components/Layout';
@@ -27,7 +26,7 @@ Settings extends React.Component {
       shell.openExternal(
         'https://github.com/lionsharecapital/lionshare-desktop#faq'
       );
-    const { selectPeriod, period } = this.props.prices;
+    const { selectPeriod, period, assetData } = this.props.prices;
     const periodDay = () => selectPeriod('day');
     const periodWeek = () => selectPeriod('week');
     const periodMonth = () => selectPeriod('month');
@@ -58,7 +57,7 @@ Settings extends React.Component {
             </SettingToggle>
           </Section>
           <Section>
-            <Heading>Sort Prices By</Heading>
+            <Heading>Sort Assets By</Heading>
             <SettingToggle>
               <ToggleOption
                 onClick={() => {
@@ -74,7 +73,7 @@ Settings extends React.Component {
                 }}
                 selected={sortBy === SORT_TYPES.change}
               >
-                % Change
+                Price Change
               </ToggleOption>
             </SettingToggle>
           </Section>
@@ -120,14 +119,15 @@ Settings extends React.Component {
               </span>
             </Heading>
             <AssetList>
-              {CURRENCIES.map(asset => (
-                <Asset
-                  key={asset.symbol}
-                  {...asset}
-                  toggleCurrency={ui.toggleCurrency}
-                  visibleCurrencies={ui.visibleCurrencies}
-                />
-              ))}
+              {Object.values(assetData)
+                .map(asset => (
+                  <Asset
+                    key={asset.symbol}
+                    {...asset}
+                    toggleCurrency={ui.toggleCurrency}
+                    visibleCurrencies={ui.visibleCurrencies}
+                  />
+                ))}
             </AssetList>
           </Section>
         </Flex>

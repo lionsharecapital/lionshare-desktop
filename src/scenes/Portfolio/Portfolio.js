@@ -109,6 +109,7 @@ class Portfolio extends React.Component {
                       totalBalance={this.store.totalBalance}
                       onChange={this.store.updateBalance}
                       visibleCurrencies={this.props.ui.visibleCurrencies}
+                      assets={this.props.prices.assetData}
                       editMode={this.store.editMode}
                       toggleEditMode={this.store.toggleEditMode}
                       fiatCurrency={this.store.fiatCurrency}
