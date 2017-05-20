@@ -126,6 +126,11 @@ const CURRENCIES = [
     symbol: 'GNT',
     color: '#01d3e0',
   },
+  {
+    name: 'Digibyte',
+    symbol: 'DGB',
+    color: '#454545',
+  },
 ];
 
 const currencyData = currencySymbol =>
