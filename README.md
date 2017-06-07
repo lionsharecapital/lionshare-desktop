@@ -25,7 +25,7 @@ To install for development, clone the repository and install the dependencies wi
 ```bash
 $ git clone git@github.com:lionsharecapital/lionshare-desktop.gitfd$a
 $ cd lionshare-desktop
-$ yarn 
+$ yarn
 ```
 
 ### Running
@@ -51,7 +51,7 @@ Lionshare is an open source side project. To support development and keep our se
 
 **When will Lionshare support < your favorite coin >?**
 
-Right now we're supporting coins with the most marget cap listed on GDAX and Poloniex. If we're not yet supporting your favorite coin, please create an issue to [lionshare-api](https://github.com/lionsharecapital/lionshare-api/issues) repository or upvote an existing one :+1:
+Right now we're supporting coins with the most market cap listed on GDAX and Poloniex. If we're not yet supporting your favorite coin, please create an issue to [lionshare-api](https://github.com/lionsharecapital/lionshare-api/issues) repository or upvote an existing one :+1:
 
 **Does my portfolio leave my computer?**
 
