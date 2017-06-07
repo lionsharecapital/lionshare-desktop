@@ -126,6 +126,16 @@ const CURRENCIES = [
     symbol: 'GNT',
     color: '#01d3e0',
   },
+  {
+    name: 'Nxt',
+    symbol: 'NXT',
+    color: '#00a0c5',
+  },
+  {
+    name: 'Stratis',
+    symbol: 'STRAT',
+    color: '#62d6de',
+  },
 ];
 
 const currencyData = currencySymbol =>
