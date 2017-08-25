@@ -12,6 +12,11 @@ const CURRENCIES = [
     color: '#8C01FF',
   },
   {
+    name: 'Bitcoin Cash',
+    symbol: 'BCH',
+    color: '#FF7300',
+  },
+  {
     name: 'Litecoin',
     symbol: 'LTC',
     color: '#B4B4B4',
