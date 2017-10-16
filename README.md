@@ -1,16 +1,32 @@
-# Lionshare Desktop
+# CryptoRatel Desktop
+[![built with JS](https://img.shields.io/badge/built%20with-JavaScript-orange.svg)](https://www.javascript.com/)
+[![built with React](https://img.shields.io/badge/built%20with-React-orange.svg)](https://reactjs.org/)
+[![built with Electron](https://img.shields.io/badge/built%20with-Electron-orange.svg)](https://electron.atom.io/)
+[![built with Mobx](https://img.shields.io/badge/built%20with-Mobx-orange.svg)](https://mobx.js.org/)
+[![Technocracy world](https://img.shields.io/badge/AI-TechnoCracy-blue.svg)](https://github.com/technocracy-world)
+[![Technocracy world](https://img.shields.io/badge/Blockchain-World-blue.svg)](https://github.com/technocracy-world)
 
-![1-diwz_x9p3c86sfo-gydi5a](https://cloud.githubusercontent.com/assets/31465/22240931/0e1f9c58-e1d2-11e6-9c28-d7cbd3b3f03b.png)
 
-[**Blog: Announcing Lionshare**](https://medium.com/@jorilallo/announcing-lionshare-541daf082160)
 
-Lionshare is a simple macOS application that helps you track cryptocurrencies and
+
+
+![Logo](https://i.imgur.com/vnifpnd.png)
+
+> **Description**: We do believe that the most functions of government should be replaced with more effective and unbiased technologies. The governmental influence on people should be minimized in a maximum possible and safe way, while the most important and necessary governmental functions should become decentrilized and transparent. Blockchain technology promises to catalyze those changes in a financial sector. Let's take baby steps towards AI-technocracy future and help blockchain to evolve. CryptoRatel is our nano-baby-step. Feel free to contribute.
+
+> **Think this tool is worth supporting?**  
+Head over to https://github.com/technocracy-world/crypto-price-comparison/wiki/How-to-Contribute to find out how you can help.
+**Become a part of CryptoRatel**  
+
+> **Have an issue**  
+Head over to https://github.com/technocracy-world/crypto-price-comparison/wiki/Reporting-An-Issue to find out how to report this to us and get help.
+
+
+
+CryptoRatel is a simple multiplatform application that helps you to track cryptocurrencies and
 your portfolio. Build using Electron, React and Mobx.
 
-For the API and other parts of the Lionshare herd, checkout our [Github page](https://github.com/lionsharecapital)
-or get in touch with us on [Twitter](https://twitter.com/getlionshare).
 
-_Special thanks to [Coinbase](http://coinbase.com/) for sponsoring the release of Lionshare as open source software. If you’re interested in building products to reinvent the future of finance, [get in touch](https://www.coinbase.com/careers)._
 
 
 ## Development
@@ -23,8 +39,8 @@ can be found under `desktop/`. All React application code is stored inside `src/
 To install for development, clone the repository and install the dependencies with `yarn`.
 
 ```bash
-$ git clone git@github.com:lionsharecapital/lionshare-desktop.gitfd$a
-$ cd lionshare-desktop
+$ git clone https://github.com/technocracy-world/CryptoRatel.git
+$ cd CryptoRatel
 $ yarn 
 ```
 
@@ -38,32 +54,20 @@ yarn run dev
 
 ## About
 
-Lionshare is an open source project created by [Ben Jennings](https://twitter.com/benjennin_gs), [Jori Lallo](https://twitter.com/jorilallo) and [Maksim Stepanenko](https://twitter.com/maksim_s).
+CryptoRatel is an open source project based on Lionshare fork. The fork was intended for democratizing the app and making it available for
+all the platforms.
 
-## Donate
 
-Lionshare is an open source side project. To support development and keep our server running, you can donate using Bitcoin and Ethereum:
-
-- Bitcoin: `14cYsomReqcsznbKTuW6Mh91uZm2j2AF5B`
-- Ethereum: `0xbBC664b891D6Fc7EBF516594D690e370C5C32A9f`
 
 ## FAQ
-
-**When will Lionshare support < your favorite coin >?**
-
-Right now we're supporting coins with the most marget cap listed on GDAX and Poloniex. If we're not yet supporting your favorite coin, please create an issue to [lionshare-api](https://github.com/lionsharecapital/lionshare-api/issues) repository or upvote an existing one :+1:
-
 **Does my portfolio leave my computer?**
 
-No, Lionshare is completely client-side and doesn't hold any keys. We take security very seriously and all our communication happens over HTTPS. All code is open source.
+No, CryptoRatel is completely client-side and doesn't hold any keys. We take security very seriously and all our communication happens over HTTPS. All code is open source.
 
 **How will you make money?**
 
 We won't, this is a side project.
 
-**When can I have a Linux, Windows, iOS, etc version?**
-
-Right now we're focused on supporting macOS but open to adding support for other platforms in the future.
 
 ## License
 
