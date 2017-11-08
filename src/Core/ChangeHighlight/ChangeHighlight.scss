@@ -1,0 +1,31 @@
+@import '../../styles/constants.scss';
+
+.number {
+  border-radius: 2px;
+}
+
+.upHighlight {
+  animation: pulseUp 1.25s ease;
+}
+
+@keyframes pulseUp {
+  0% {
+    opacity: 0;
+    color: $up;
+    background-color: $up;
+  }
+  100% { opacity: 1; }
+}
+
+.downHighlight {
+  animation: pulseDown 1.25s ease;
+}
+
+@keyframes pulseDown {
+  0% {
+    opacity: 0;
+    color: $down;
+    background-color: $down;
+  }
+  100% { opacity: 1; }
+}
