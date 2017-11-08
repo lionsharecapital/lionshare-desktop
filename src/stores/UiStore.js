@@ -15,71 +15,10 @@ export default class Ui {
 
   /* actions */
 
-  @action changeView(view) {
-    if (AVAILABLE_VIEWS.includes(view)) {
-      this.view = view;
-    }
-  }
-
-  @action toggleCurrency = currency => {
-    if (this.visibleCurrencies.includes(currency)) {
-      this.visibleCurrencies.remove(currency);
-    } else {
-      this.visibleCurrencies.push(currency);
-    }
-  };
-
-  @action setSortBy = sortBy => {
-    this.sortBy = sortBy;
-  };
-
-  @action toggleCurrenciesAll = () => {
-    this.toggleCurrenciesNone(); // Clear first
-    CURRENCIES.forEach(currency =>
-      this.visibleCurrencies.push(currency.symbol));
-  };
-
-  @action toggleCurrenciesNone = () => {
-    this.visibleCurrencies = [];
-  };
-
-  @action setLaunchOnStartup = launchOnStartup => {
-    this.launchOnStartup = launchOnStartup;
-  };
-
-  @action setDockItemVisible = visible => {
-    this.dockItemVisible = visible;
-  };
-
-  @action fromJSON = jsonData => {
-    const parsed = JSON.parse(jsonData);
-    this.view = parsed.view;
-    this.visibleCurrencies.replace(parsed.visibleCurrencies);
-
-    const setIfDefined = key => {
-      if (typeof parsed[key] !== 'undefined') {
-        this[key] = parsed[key];
-      }
-    };
-
-    setIfDefined('dockItemVisible');
-    setIfDefined('sortBy');
-    setIfDefined('launchOnStartup');
-  };
 
   /* other */
 
-  toObject = () => {
-    return {
-      view: this.view,
-      visibleCurrencies: this.visibleCurrencies,
-      sortBy: this.sortBy,
-      launchOnStartup: this.launchOnStartup,
-      dockItemVisible: this.dockItemVisible,
-    };
-  };
 
-  toJSON = () => JSON.stringify(this.toObject());
 
   constructor() {
     // Rehydrate store from persisted data
@@ -91,7 +30,7 @@ export default class Ui {
       localStorage.setItem(UI_STORE_KEY, this.toJSON());
 
       // Send settings to main process for tray configuration
-      ipcRenderer.send('settingsUpdated', this.toObject());
+      // ipcRenderer.send('settingsUpdated', this.toObject());
     });
   }
 }

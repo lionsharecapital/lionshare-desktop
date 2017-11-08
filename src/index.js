@@ -1,23 +1,34 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'mobx-react';
-import { Flex } from 'reflexbox';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {Flex} from 'reflexbox';
+import './index.css';
+import Application from './Modules/Application';
+import registerServiceWorker from './registerServiceWorker';
+import thunk from 'redux-thunk';
+import TestComponent from './Modules/TestComponent/TestComponent';
 
-import stores from 'stores';
+// reducers
+import {pricesReducer, uiReducer} from './Modules/Application/reducers/ApplicationReducers';
 
-import Application from './scenes/Application';
+const rootReducer = combineReducers(
+    {
+        prices: pricesReducer,
+        ui: uiReducer
+    }
+); 
 
-let DevTools;
-if (__DEV__) {
-  DevTools = require('mobx-react-devtools').default;
-}
+const reduxStore = createStore(rootReducer, applyMiddleware(thunk));
 
-render(
-  <Flex auto>
-    <Provider {...stores}>
-      <Application />
+// for debugging purposes
+window.reduxStore = reduxStore;
+
+ReactDOM.render(
+    <Provider store={reduxStore}>
+        <Flex auto>
+            <Application/>            
+        </Flex>
     </Provider>
-    {false && <DevTools position={{ bottom: 0, right: 0 }} />}
-  </Flex>,
-  document.getElementById('root')
-);
+    ,document.getElementById('root'));
+registerServiceWorker();
