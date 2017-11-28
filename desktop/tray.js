@@ -1,7 +1,7 @@
 import path from 'path';
 import electron from 'electron';
 import { ipcMain } from 'electron';
-
+import { ipcRenderer } from 'electron';
 import config from './config';
 
 const app = electron.app;
@@ -12,8 +12,15 @@ const newTray = win => {
 
   const contextMenu = electron.Menu.buildFromTemplate([
     {
-      role: 'quit',
+      label: 'Preferences…',
+      accelerator: 'CmdOrCtrl+,',
+      click() {
+        win.webContents.send('showSettings');
+        win.show();
+      },
     },
+    { type: 'separator' },
+    { role: 'quit' },
   ]);
 
   tray = new electron.Tray(
@@ -23,6 +30,7 @@ const newTray = win => {
   // https://github.com/electron/electron/issues/1825
   tray.setHighlightMode(false);
   tray.setToolTip(`${app.getName()}`);
+  tray.setContextMenu(contextMenu);
   tray.on('click', e => {
     // Not sure why right click event doesn't work for me so doing manually
     if (e.ctrlKey) {
@@ -31,6 +39,7 @@ const newTray = win => {
       toggleWin();
     }
   });
+  // macOS Windows
   tray.on('right-click', () => tray.popUpContextMenu(contextMenu));
   tray.on('double-click', () => toggleWin());
   return tray;
@@ -43,8 +52,10 @@ const create = (app, mainWindow) => {
     if (tray) {
       if (config.get('priceSetting')) {
         tray.setTitle(change);
+        tray.setToolTip(`${app.getName()} ` + change);
       } else {
         tray.setTitle('');
+        tray.setToolTip(`${app.getName()}`);
       }
     }
   });
