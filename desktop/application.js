@@ -51,7 +51,6 @@ const createMainWindow = () => {
     titleBarStyle: 'hidden-inset', // darwin only
     autoHideMenuBar: true,
     backgroundColor: '#000000',
-    icon: path.join(__dirname, '../src/assets/icons/menubarTemplate.png'),
   });
 
   if (process.platform === 'darwin') {
