@@ -46,10 +46,12 @@ const createMainWindow = () => {
     minHeight: 450,
     maximizable: false,
     fullscreenable: false,
-    frame: false,
-    titleBarStyle: 'hidden-inset',
+    // Only go frameless on macOS
+    frame: process.platform !== 'darwin',
+    titleBarStyle: 'hidden-inset', // darwin only
     autoHideMenuBar: true,
     backgroundColor: '#000000',
+    icon: path.join(__dirname, '../src/assets/icons/menubarTemplate.png'),
   });
 
   if (process.platform === 'darwin') {
