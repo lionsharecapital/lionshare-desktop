@@ -25,7 +25,7 @@
   },
   "build": {
     "appId": "com.jorilallo.lionshare",
-    "icon": "src/assets/icons/appicon.icns",
+    "icon": "src/assets/icons/icon.icns",
     "files": "!dist/*",
     "mac": {
       "target": "zip"
@@ -45,7 +45,9 @@
     "babel-preset-stage-0": "^6.5.0",
     "chart.js": "^2.4",
     "classnames": "^2.2.5",
-    "electron": "^1.4.15",
+    "electron-config": "^0.2.1",
+    "electron-is-dev": "^0.1.2",
+    "electron-machine-id": "^1.0.9",
     "lodash": "^4.17.2",
     "mobx": "^2.2.2",
     "mobx-react": "^4.0.3",
@@ -63,6 +65,7 @@
     "cross-env": "^1.0.7",
     "css-loader": "^0.23.1",
     "dotenv": "^2.0.0",
+    "electron": "^1.4.15",
     "electron-builder": "^12.3.1",
     "electron-config": "^0.2.1",
     "electron-is-dev": "^0.1.2",
