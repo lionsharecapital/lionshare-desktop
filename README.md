@@ -67,4 +67,4 @@ Right now we're focused on supporting macOS but open to adding support for other
 
 ## License
 
-MIT
+[MIT](https://opensource.org/licenses/MIT)
