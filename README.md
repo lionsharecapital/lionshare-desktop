@@ -23,7 +23,7 @@ can be found under `desktop/`. All React application code is stored inside `src/
 To install for development, clone the repository and install the dependencies with `yarn`.
 
 ```bash
-$ git clone git@github.com:lionsharecapital/lionshare-desktop.gitfd$a
+$ git clone git@github.com:lionsharecapital/lionshare-desktop.git
 $ cd lionshare-desktop
 $ yarn 
 ```
