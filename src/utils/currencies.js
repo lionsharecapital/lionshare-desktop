@@ -126,6 +126,11 @@ const CURRENCIES = [
     symbol: 'GNT',
     color: '#01d3e0',
   },
+  {
+    name: 'OmiseGO',
+    symbol: 'OMG',
+    color: '#99ccff',
+  },
 ];
 
 const currencyData = currencySymbol =>
