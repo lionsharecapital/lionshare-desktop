@@ -93,12 +93,14 @@ app.on('ready', () => {
   const page = mainWindow.webContents;
 
   ipcMain.on('settingsUpdated', (_event, settings) => {
-    if (settings.dockItemVisible) {
-      if (!app.dock.isVisible()) {
-        app.dock.show();
+    if (app.dock) {
+      if (settings.dockItemVisible) {
+        if (!app.dock.isVisible()) {
+          app.dock.show();
+        }
+      } else if (app.dock.isVisible()) {
+        app.dock.hide();
       }
-    } else if (app.dock.isVisible()) {
-      app.dock.hide();
     }
   });
 
@@ -121,11 +123,8 @@ const trackUser = async () => {
   const id = await machineId();
   const user = ua('UA-90111350-1', id, { strictCidFormat: false, https: true });
   user.pageview('/').send();
-  setInterval(
-    () => {
-      user.pageview('/').send();
-    },
-    60000 * 5
-  );
+  setInterval(() => {
+    user.pageview('/').send();
+  }, 60000 * 5);
 };
 if (!isDev) trackUser();

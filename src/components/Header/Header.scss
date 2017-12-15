@@ -17,6 +17,7 @@
   text-decoration: none;
   opacity: 0.35;
   cursor: pointer;
+  -webkit-app-region: no-drag;
 
   &:hover {
     opacity: 1;
@@ -43,6 +44,7 @@
   position: absolute;
   right: 10px;
   stroke: $darkGray;
+  -webkit-app-region: no-drag;
 
   &:hover {
     stroke: $white;
