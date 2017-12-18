@@ -136,14 +136,22 @@ const CURRENCIES = [
     symbol: 'OMG',
     color: '#99ccff',
   },
+  {
+    name: 'Fiat',
+    symbol: 'USD',
+    color: '#38E6B2',
+  },
 ];
 
 const currencyData = currencySymbol =>
   _.find(CURRENCIES, data => data.symbol === currencySymbol);
+
+const currencyDataFromName = currencyName =>
+  _.find(CURRENCIES, data => data.name === currencyName);
 
 const currencyColors = {};
 CURRENCIES.forEach(currency => {
   currencyColors[currency.symbol] = currency.color;
 });
 
-export { CURRENCIES, currencyData, currencyColors };
+export { CURRENCIES, currencyData, currencyDataFromName, currencyColors };
