@@ -2,9 +2,11 @@ import _ from 'lodash';
 import { observable, computed, action, autorun } from 'mobx';
 import ReconnectingWebsocket from 'reconnecting-websocket';
 
-import { currencyColors } from 'utils/currencies';
+import { currencyDataFromName, currencyColors } from 'utils/currencies';
 
 const PRICES_STORE_KEY = 'PRICES_STORE_KEY';
+
+const FIAT = currencyDataFromName('Fiat');
 
 export default class PricesStore {
   @observable rateData = {};
@@ -15,10 +17,12 @@ export default class PricesStore {
 
   /* computed */
 
-  @computed get rates() {
+  @computed
+  get rates() {
     let data;
     if (this.isLoaded) {
       data = {};
+      data[FIAT.symbol] = 1;
       _.map(this.rateData, (value, key) => {
         data[key] = value.slice(-1)[0];
       });
@@ -26,10 +30,12 @@ export default class PricesStore {
     return data;
   }
 
-  @computed get changes() {
+  @computed
+  get changes() {
     let data;
     if (this.isLoaded) {
       data = {};
+      data[FIAT.symbol] = 0;
       _.map(this.rateData, (value, key) => {
         const change = (value.slice(-1)[0] - value[0]) / value[0];
         data[key] = change;
@@ -38,7 +44,8 @@ export default class PricesStore {
     return data;
   }
 
-  @computed get priceListData() {
+  @computed
+  get priceListData() {
     let data;
     if (this.isLoaded) {
       data = [];
@@ -78,7 +85,8 @@ export default class PricesStore {
 
   /* actions */
 
-  @action fetchData = async () => {
+  @action
+  fetchData = async () => {
     try {
       const rateRes = await fetch(
         `${API_URL}/api/prices?period=${this.period}`
@@ -95,18 +103,17 @@ export default class PricesStore {
     } catch (_e) {
       if (!this.isLoaded) {
         // Only show the error if the first load fails
-        this.error = 'Error loading content, please check your connection and try again.';
+        this.error =
+          'Error loading content, please check your connection and try again.';
       }
-      setTimeout(
-        () => {
-          this.fetchData();
-        },
-        2000
-      );
+      setTimeout(() => {
+        this.fetchData();
+      }, 2000);
     }
   };
 
-  @action updatePrice = message => {
+  @action
+  updatePrice = message => {
     const data = JSON.parse(message.data);
     const cryptoCurrency = data.cryptoCurrency;
     const price = parseFloat(data.price);
@@ -116,17 +123,20 @@ export default class PricesStore {
     }
   };
 
-  @action connectToWebsocket = () => {
+  @action
+  connectToWebsocket = () => {
     this.websocket = new ReconnectingWebsocket(WS_URL, [], {});
     this.websocket.addEventListener('message', this.updatePrice);
   };
 
-  @action selectPeriod = period => {
+  @action
+  selectPeriod = period => {
     this.period = period;
     this.fetchData();
   };
 
-  @action fromJSON = jsonData => {
+  @action
+  fromJSON = jsonData => {
     const parsed = JSON.parse(jsonData);
     this.rateData = parsed.rateData;
     this.marketData = parsed.marketData;
@@ -136,11 +146,12 @@ export default class PricesStore {
 
   /* other */
 
-  toJSON = () => JSON.stringify({
-    rateData: this.rateData,
-    marketData: this.marketData,
-    period: this.period,
-  });
+  toJSON = () =>
+    JSON.stringify({
+      rateData: this.rateData,
+      marketData: this.marketData,
+      period: this.period,
+    });
 
   highestPrice = currency => {
     let highestPrice = 0.0;
@@ -192,11 +203,8 @@ export default class PricesStore {
     // them from the websocket messages, there is no need
     // to update more frequently than this.
     const interval = 60 * 60 * 1000;
-    setInterval(
-      () => {
-        this.fetchData();
-      },
-      interval
-    );
+    setInterval(() => {
+      this.fetchData();
+    }, interval);
   }
 }
