@@ -29,6 +29,17 @@
     "files": "!dist/*",
     "mac": {
       "target": "zip"
+    },
+    "linux": {
+      "target": "snap"
+    },
+    "snap": {
+      "plugs": [
+        "default"
+      ],
+      "after": [
+        "desktop-gtk2"
+      ]
     }
   },
   "author": "Jori Lallo <jori@coinbase.com>, Ben Jennings <ben@coinbase.com>, Maksim Stepanenko <maksim@coinbase.com>",
@@ -66,7 +77,7 @@
     "css-loader": "^0.23.1",
     "dotenv": "^2.0.0",
     "electron": "^1.4.15",
-    "electron-builder": "^12.3.1",
+    "electron-builder": "^19.50.0",
     "electron-config": "^0.2.1",
     "electron-is-dev": "^0.1.2",
     "electron-machine-id": "^1.0.9",
@@ -86,7 +97,7 @@
     "node-sass": "^3.4.2",
     "node-static": "^0.7.7",
     "pre-commit": "^1.2.2",
-    "prettier": "git+ssh://git@github.com/prettier/prettier.git",
+    "prettier": "https://github.com/prettier/prettier.git",
     "rebass": "^0.2.6",
     "resolve-url": "^0.2.1",
     "resolve-url-loader": "^1.4.3",
