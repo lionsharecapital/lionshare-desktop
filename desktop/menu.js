@@ -141,6 +141,23 @@ const createMenu = (app, mainWindow) => {
         role: 'front',
       },
     ];
+  } else {
+    // linux/windows
+    template.unshift({
+      label: 'File',
+      submenu: [
+        {
+          label: 'Preferences…',
+          accelerator: 'CmdOrCtrl+,',
+          click() {
+            mainWindow.webContents.send('showSettings');
+          },
+        },
+        { type: 'separator' },
+        { role: 'close' },
+        { role: 'quit' },
+      ],
+    });
   }
 
   const menu = Menu.buildFromTemplate(template);

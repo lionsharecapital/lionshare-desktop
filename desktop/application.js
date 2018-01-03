@@ -46,8 +46,9 @@ const createMainWindow = () => {
     minHeight: 450,
     maximizable: false,
     fullscreenable: false,
-    frame: false,
-    titleBarStyle: 'hidden-inset',
+    // Only go frameless on macOS
+    frame: process.platform !== 'darwin',
+    titleBarStyle: 'hidden-inset', // darwin only
     autoHideMenuBar: true,
     backgroundColor: '#000000',
   });
@@ -93,6 +94,10 @@ app.on('ready', () => {
   const page = mainWindow.webContents;
 
   ipcMain.on('settingsUpdated', (_event, settings) => {
+    // app.dock is macOS only
+    if ((process.platform !== 'darwin') || (app.dock === undefined)) {
+      return;
+    }
     if (settings.dockItemVisible) {
       if (!app.dock.isVisible()) {
         app.dock.show();
